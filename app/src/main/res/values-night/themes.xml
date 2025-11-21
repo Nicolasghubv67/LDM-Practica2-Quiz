@@ -1,0 +1,20 @@
+<resources>
+    <!-- Brand (oscuro) -->
+    <color name="color_primary">#FF6E6E</color>
+    <color name="color_onPrimary">#300000</color>
+    <color name="color_primaryContainer">#7F1E1E</color>
+    <color name="color_onPrimaryContainer">#FFDAD4</color>
+
+    <color name="color_secondary">#B0BEC5</color>
+    <color name="color_onSecondary">#102027</color>
+    <color name="color_secondaryContainer">#37474F</color>
+    <color name="color_onSecondaryContainer">#E2F1F8</color>
+
+    <color name="color_surface">#121212</color>
+    <color name="color_onSurface">#E6E1E5</color>
+    <color name="color_surfaceVariant">#2A2A2A</color>
+    <color name="color_outline">#8A8A8A</color>
+
+    <color name="bg_start">#0B1220</color>
+    <color name="bg_end">#111B2A</color>
+</resources>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_toggle_sound"
+        android:title="@string/sonido"
+        android:icon="@drawable/ic_volume_up_24"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_toggle_music"
+        android:title="@string/musica"
+        android:icon="@drawable/ic_music_note_24"
+        app:showAsAction="always" />
+
+</menu>

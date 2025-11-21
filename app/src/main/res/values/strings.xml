@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Práctica 2</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="comprobar">Comprobar</string>
+    <string name="siguiente">Siguiente</string>
+    <string name="volver">Volver</string>
+    <string name="_0">0</string>
+    <string name="puntuaci_n">Puntuación: </string>
+    <string name="volver_al_inicio">Volver al inicio</string>
+    <string name="correcto_3">¡Correcto! +3</string>
+    <string name="incorrecto_2">Incorrecto -2</string>
+    <string name="sonido">sonido</string>
+    <string name="musica">musica</string>
+</resources>

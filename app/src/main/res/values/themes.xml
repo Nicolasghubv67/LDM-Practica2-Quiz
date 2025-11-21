@@ -1,0 +1,92 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="Theme.Practica1Laboratorio" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Colores M3 -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorOnPrimary">@color/color_onPrimary</item>
+        <item name="colorPrimaryContainer">@color/color_primaryContainer</item>
+        <item name="colorOnPrimaryContainer">@color/color_onPrimaryContainer</item>
+
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="colorOnSecondary">@color/color_onSecondary</item>
+        <item name="colorSecondaryContainer">@color/color_secondaryContainer</item>
+        <item name="colorOnSecondaryContainer">@color/color_onSecondaryContainer</item>
+
+        <item name="colorSurface">@color/color_surface</item>
+        <item name="colorOnSurface">@color/color_onSurface</item>
+        <item name="colorSurfaceVariant">@color/color_surfaceVariant</item>
+        <item name="colorOutline">@color/color_outline</item>
+
+        <!-- Shapes globales -->
+        <item name="shapeAppearanceSmallComponent">@style/Shape.Rounded.12</item>
+        <item name="shapeAppearanceMediumComponent">@style/Shape.Rounded.16</item>
+        <item name="shapeAppearanceLargeComponent">@style/Shape.Rounded.20</item>
+
+        <!-- Defaults de widgets -->
+        <item name="materialButtonStyle">@style/Widget.MyApp.Button.Filled</item>
+        <item name="chipStyle">@style/Widget.MyApp.Chip.Default</item>
+        <item name="radioButtonStyle">@style/Widget.MyApp.Radio.Option</item>
+    </style>
+
+    <!-- Shapes (incluye alias para compatibilidad) -->
+    <style name="Shape">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+    <style name="Shape.Rounded">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+    <style name="Shape.Rounded.12">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+    <style name="Shape.Rounded.16">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+    <style name="Shape.Rounded.20">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
+
+    <!-- Botón primario (filled) -->
+    <style name="Widget.MyApp.Button.Filled" parent="Widget.Material3.Button">
+        <item name="android:layout_height">48dp</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="iconSize">20dp</item>
+        <item name="iconPadding">8dp</item>
+        <item name="iconTint">?attr/colorOnPrimary</item>
+    </style>
+
+    <!-- Botón tonal (secundario) -->
+    <style name="Widget.MyApp.Button.Tonal" parent="Widget.Material3.Button.TonalButton">
+        <item name="android:layout_height">48dp</item>
+        <item name="cornerRadius">16dp</item>
+        <item name="iconSize">20dp</item>
+        <item name="iconPadding">8dp</item>
+    </style>
+
+    <!-- Chip -->
+    <style name="Widget.MyApp.Chip.Default" parent="Widget.Material3.Chip.Assist">
+        <item name="chipMinHeight">32dp</item>
+        <item name="chipCornerRadius">12dp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <!-- Radio tipo “pill” -->
+    <style name="Widget.MyApp.Radio.Option" parent="Widget.Material3.CompoundButton.RadioButton">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:minHeight">56dp</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="android:button">@null</item>
+        <item name="android:background">@drawable/bg_option_selector</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyLarge</item>
+    </style>
+
+</resources>
