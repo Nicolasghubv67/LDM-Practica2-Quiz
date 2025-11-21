@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.practica2.R;
-import com.example.practica2.media.SoundManager;
 import com.example.practica2.QuizApplication;
 import com.example.practica2.media.SoundPlayer;
 
@@ -19,9 +18,6 @@ import com.google.android.material.appbar.MaterialToolbar;
 public class MainActivity extends AppCompatActivity {
 
     private SoundPlayer soundPlayer;
-
-    private ImageButton btnSettings;
-    private ImageButton btnHelp;
 
 
     @Override
@@ -51,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
-        btnSettings = findViewById(R.id.btnSettings);
-        btnHelp = findViewById(R.id.btnHelp);
+        ImageButton btnSettings = findViewById(R.id.btnSettings);
+        ImageButton btnHelp = findViewById(R.id.btnHelp);
 
         btnSettings.setOnClickListener(v -> {
             soundPlayer.playClick();

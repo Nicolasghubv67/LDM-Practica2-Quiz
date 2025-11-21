@@ -6,12 +6,12 @@
         android:id="@+id/action_toggle_sound"
         android:title="@string/sonido"
         android:icon="@drawable/sound_effects_on"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_toggle_music"
         android:title="@string/musica"
         android:icon="@drawable/music_on"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
 
 </menu>
