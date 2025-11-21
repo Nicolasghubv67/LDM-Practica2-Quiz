@@ -38,9 +38,8 @@ public class QuizApplication extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
-        // liberar recursos si quieres
         if (musicPlayer instanceof MusicManager) {
-            ((MusicManager) musicPlayer).stop();
+            musicPlayer.stop();
         }
     }
 }

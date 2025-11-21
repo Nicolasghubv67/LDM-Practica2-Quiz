@@ -2,6 +2,7 @@ package com.example.practica2.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,9 @@ import com.google.android.material.appbar.MaterialToolbar;
 public class MainActivity extends AppCompatActivity {
 
     private SoundPlayer soundPlayer;
+
+    private ImageButton btnSettings;
+    private ImageButton btnHelp;
 
 
     @Override
@@ -46,6 +50,19 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
+
+        btnSettings = findViewById(R.id.btnSettings);
+        btnHelp = findViewById(R.id.btnHelp);
+
+        btnSettings.setOnClickListener(v -> {
+            soundPlayer.playClick();
+            startActivity(new Intent(this, SettingsActivity.class));
+        });
+
+        btnHelp.setOnClickListener(v -> {
+            soundPlayer.playClick();
+            startActivity(new Intent(this, HelpActivity.class));
+        });
     }
 
     @Override
@@ -54,5 +71,8 @@ public class MainActivity extends AppCompatActivity {
         GameViewModel viewModel = new ViewModelProvider(this).get(GameViewModel.class);
         viewModel.reset();
     }
+
+
+
 
 }

@@ -5,13 +5,13 @@
     <item
         android:id="@+id/action_toggle_sound"
         android:title="@string/sonido"
-        android:icon="@drawable/ic_volume_up_24"
+        android:icon="@drawable/sound_effects_on"
         app:showAsAction="always" />
 
     <item
         android:id="@+id/action_toggle_music"
         android:title="@string/musica"
-        android:icon="@drawable/ic_music_note_24"
+        android:icon="@drawable/music_on"
         app:showAsAction="always" />
 
 </menu>

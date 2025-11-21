@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.widget.Button;
@@ -12,12 +14,17 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.practica2.AppPreferences;
+import com.example.practica2.QuizApplication;
 import com.example.practica2.R;
+import com.example.practica2.media.MusicPlayer;
+import com.example.practica2.media.SoundPlayer;
 import com.google.android.material.appbar.MaterialToolbar;
 
 public class GameActivity extends AppCompatActivity {
@@ -28,11 +35,18 @@ public class GameActivity extends AppCompatActivity {
     private Button btnNext, btnBack;
     private Runnable hideRunnable;
 
+    private SoundPlayer soundPlayer;
+    private MusicPlayer musicPlayer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_game);
+
+        QuizApplication app = (QuizApplication) getApplication();
+        soundPlayer = app.getSoundPlayer();
+        musicPlayer = app.getMusicPlayer();
 
         MaterialToolbar toolbar = findViewById(R.id.topAppBar);
         setSupportActionBar(toolbar);
@@ -84,6 +98,72 @@ public class GameActivity extends AppCompatActivity {
             @Override public void handleOnBackPressed() { showExitAlert(); }
         });
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_audio_toggles, menu);
+        updateAudioMenuIcons(menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_toggle_sound) {
+            boolean current = AppPreferences.isSoundEnabled(this);
+            boolean newValue = !current;
+            AppPreferences.setSoundEnabled(this, newValue);
+            soundPlayer.setSoundEnabled(newValue);
+            invalidateOptionsMenu(); // refresca iconos
+            return true;
+        } else if (id == R.id.action_toggle_music) {
+            boolean current = AppPreferences.isMusicEnabled(this);
+            boolean newValue = !current;
+            AppPreferences.setMusicEnabled(this, newValue);
+            musicPlayer.setEnabled(newValue);
+            invalidateOptionsMenu();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (AppPreferences.isMusicEnabled(this)) {
+            musicPlayer.start();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        musicPlayer.pause();
+    }
+
+
+    private void updateAudioMenuIcons(Menu menu) {
+        if (menu == null) return;
+
+        boolean soundEnabled = AppPreferences.isSoundEnabled(this);
+        boolean musicEnabled = AppPreferences.isMusicEnabled(this);
+
+        MenuItem soundItem = menu.findItem(R.id.action_toggle_sound);
+        MenuItem musicItem = menu.findItem(R.id.action_toggle_music);
+
+        if (soundItem != null) {
+            soundItem.setIcon(soundEnabled
+                    ? R.drawable.sound_effects_on
+                    : R.drawable.sound_effects_off);
+        }
+
+        if (musicItem != null) {
+            musicItem.setIcon(musicEnabled
+                    ? R.drawable.music_on
+                    : R.drawable.music_off);
+        }
+    }
+
 
 
     public void showFeedback(String message, boolean isCorrect) {

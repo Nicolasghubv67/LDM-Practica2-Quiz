@@ -12,4 +12,8 @@
     <string name="incorrecto_2">Incorrecto -2</string>
     <string name="sonido">sonido</string>
     <string name="musica">musica</string>
+    <string name="sonido_efectos">Efectos de sonido</string>
+    <string name="musica_de_fondo">Música de fondo</string>
+    <string name="ajustes">Ajustes</string>
+    <string name="ayuda">Ayuda</string>
 </resources>
