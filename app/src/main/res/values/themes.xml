@@ -26,6 +26,7 @@
         <item name="materialButtonStyle">@style/Widget.MyApp.Button.Filled</item>
         <item name="chipStyle">@style/Widget.MyApp.Chip.Default</item>
         <item name="radioButtonStyle">@style/Widget.MyApp.Radio.Option</item>
+
     </style>
 
     <!-- Shapes (incluye alias para compatibilidad) -->

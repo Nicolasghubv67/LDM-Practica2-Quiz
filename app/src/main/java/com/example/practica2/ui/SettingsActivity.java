@@ -12,7 +12,7 @@ import com.example.practica2.media.SoundPlayer;
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.android.material.materialswitch.MaterialSwitch;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
 
     private SoundPlayer soundPlayer;
     private MusicPlayer musicPlayer;
@@ -26,13 +26,6 @@ public class SettingsActivity extends AppCompatActivity {
         soundPlayer = app.getSoundPlayer();
         musicPlayer = app.getMusicPlayer();
 
-        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setLogo(R.mipmap.ic_launcher_round);
-            getSupportActionBar().setDisplayUseLogoEnabled(true);
-        }
         toolbar.setNavigationOnClickListener(v -> onBackPressed());
 
         MaterialSwitch switchSound = findViewById(R.id.switchSound);

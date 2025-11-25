@@ -8,16 +8,7 @@
     tools:context=".ui.MainActivity">
 
     <!-- TOOLBAR -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/topAppBar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:title="@string/app_name" />
-
+    <include layout="@layout/toolbar" />
 
     <RelativeLayout
         android:id="@+id/mainContent"
@@ -42,28 +33,4 @@
             app:lottie_rawRes="@raw/boton_comenzar"/>
 
     </RelativeLayout>
-    <!-- Botón Ajustes (abajo izquierda) -->
-    <ImageButton
-        android:id="@+id/btnSettings"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@android:color/transparent"
-        android:padding="8dp"
-        android:contentDescription="@string/ajustes"
-        android:src="@drawable/configuraciones"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
-
-    <!-- Botón Ayuda (abajo derecha) -->
-    <ImageButton
-        android:id="@+id/btnHelp"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@android:color/transparent"
-        android:padding="8dp"
-        android:contentDescription="@string/ayuda"
-        android:src="@drawable/informacion"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

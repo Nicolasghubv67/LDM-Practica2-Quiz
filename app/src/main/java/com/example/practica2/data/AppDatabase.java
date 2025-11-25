@@ -6,12 +6,13 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {GameResult.class}, version = 1)
+@Database(entities = {GameResult.class, Question.class}, version = 2)
 public abstract class AppDatabase extends RoomDatabase {
 
     private static volatile AppDatabase INSTANCE;
 
     public abstract GameResultDao gameResultDao();
+    public abstract QuestionDao questionDao();
 
     public static AppDatabase getInstance(Context context) {
         if (INSTANCE == null) {
@@ -21,7 +22,7 @@ public abstract class AppDatabase extends RoomDatabase {
                             context.getApplicationContext(),
                             AppDatabase.class,
                             "practica2_db"
-                    ).build();
+                    ).fallbackToDestructiveMigration().build();
                 }
             }
         }

@@ -16,4 +16,8 @@
     <string name="musica_de_fondo">Música de fondo</string>
     <string name="ajustes">Ajustes</string>
     <string name="ayuda">Ayuda</string>
+    <string name="logo_app_quiz">Logo App Quiz</string>
+    <string name="sound">Sonido</string>
+    <string name="music">Musica</string>
+    <string name="informacion">Información</string>
 </resources>

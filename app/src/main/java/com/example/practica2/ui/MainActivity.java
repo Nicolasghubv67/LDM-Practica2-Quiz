@@ -15,7 +15,7 @@ import com.example.practica2.media.SoundPlayer;
 
 import com.google.android.material.appbar.MaterialToolbar;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private SoundPlayer soundPlayer;
 
@@ -26,16 +26,11 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        soundPlayer = ((QuizApplication) getApplication()).getSoundPlayer();
-
-        // Toolbar como ActionBar
-        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
-        setSupportActionBar(toolbar);
-
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
-            getSupportActionBar().setIcon(R.mipmap.ic_launcher_round);
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         }
+
+        soundPlayer = ((QuizApplication) getApplication()).getSoundPlayer();
 
         LottieAnimationView btnStart = findViewById(R.id.btnStart);
         btnStart.enableMergePathsForKitKatAndAbove(true);
@@ -47,18 +42,6 @@ public class MainActivity extends AppCompatActivity {
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         });
 
-        ImageButton btnSettings = findViewById(R.id.btnSettings);
-        ImageButton btnHelp = findViewById(R.id.btnHelp);
-
-        btnSettings.setOnClickListener(v -> {
-            soundPlayer.playClick();
-            startActivity(new Intent(this, SettingsActivity.class));
-        });
-
-        btnHelp.setOnClickListener(v -> {
-            soundPlayer.playClick();
-            startActivity(new Intent(this, HelpActivity.class));
-        });
     }
 
     @Override
@@ -67,8 +50,5 @@ public class MainActivity extends AppCompatActivity {
         GameViewModel viewModel = new ViewModelProvider(this).get(GameViewModel.class);
         viewModel.reset();
     }
-
-
-
 
 }
