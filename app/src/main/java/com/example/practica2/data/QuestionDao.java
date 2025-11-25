@@ -4,7 +4,7 @@ import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
-import androidx.room.Delete;
+
 
 import java.util.List;
 
@@ -17,18 +17,13 @@ public interface QuestionDao {
     @Insert
     void insertAll(List<Question> questions);
 
-    @Query("SELECT * FROM Question")
-    List<Question> getAll();
-
-    @Query("SELECT * FROM Question WHERE id = :id")
-    Question getById(int id);
-
-    @Delete
-    void delete(Question question);
+    // Para sacar N preguntas aleatorias
+    @Query("SELECT * FROM Question ORDER BY RANDOM() LIMIT :limit")
+    List<Question> getRandom(int limit);
 
     @Update
     void update(Question question);
 
-    @Query("DELETE FROM Question")
-    void deleteAll();
+    @Query("SELECT COUNT(*) FROM Question")
+    int count();
 }

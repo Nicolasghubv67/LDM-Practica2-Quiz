@@ -12,6 +12,9 @@ public interface GameResultDao {
     @Insert
     void insert(GameResult result);
 
-    @Query("SELECT * FROM game_result ORDER BY timestamp DESC")
+    @Query("SELECT * FROM game_results ORDER BY timestamp DESC")
     List<GameResult> getAllOrdered();
+
+    @Query("SELECT COUNT(*) FROM game_results")
+    int count();
 }

@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
@@ -21,18 +20,16 @@ import com.example.practica2.AppPreferences;
 import com.example.practica2.QuizApplication;
 import com.example.practica2.R;
 import com.example.practica2.media.MusicPlayer;
-import com.example.practica2.media.SoundPlayer;
-
+import com.example.practica2.repository.GameRepository;
 
 public class GameActivity extends BaseActivity {
 
     private final Handler handler = new Handler(Looper.getMainLooper());
     private GameViewModel viewModel;
     private TextView score;
-    private Button btnNext, btnBack;
+    private Button btnNext;
     private Runnable hideRunnable;
 
-    private SoundPlayer soundPlayer;
     private MusicPlayer musicPlayer;
 
     @Override
@@ -42,16 +39,22 @@ public class GameActivity extends BaseActivity {
         setContentView(R.layout.activity_game);
 
         QuizApplication app = (QuizApplication) getApplication();
-        soundPlayer = app.getSoundPlayer();
         musicPlayer = app.getMusicPlayer();
 
         toolbar.setNavigationOnClickListener(v -> showExitAlert());
 
+        // ViewModel (lógica de juego + LiveData)
         viewModel = new ViewModelProvider(this).get(GameViewModel.class);
+
+        // Repositorio (acceso a Room). Carga 5 preguntas aleatorias y las mete en el ViewModel.
+        GameRepository repository = new GameRepository(this);
+        repository.getRandomQuestionsAsync(5, loadedQuestions ->
+                runOnUiThread(() -> viewModel.setQuestionsFromDb(loadedQuestions))
+        );
 
         score   = findViewById(R.id.tvScore);
         btnNext = findViewById(R.id.btnNext);
-        btnBack = findViewById(R.id.btnBack);
+        Button btnBack = findViewById(R.id.btnBack);
 
         // Puntuación actual
         viewModel.getScore().observe(this, s -> score.setText(String.valueOf(s)));
@@ -60,22 +63,18 @@ public class GameActivity extends BaseActivity {
         viewModel.getValidated().observe(this, v -> updateNextButton());
         viewModel.getCurrentIndexLive().observe(this, idx -> updateNextButton());
 
-        // Navegación "Siguiente / Finalizar" -- no depende del XML
+        // Navegación "Siguiente / Finalizar"
         btnNext.setOnClickListener(v -> {
             boolean last = viewModel.isLastQuestion();
             if (last) {
                 Intent intent = new Intent(GameActivity.this, ResultsActivity.class);
-                int finalScore = viewModel.getScore().getValue() == null ? 0 : viewModel.getScore().getValue();
+                int finalScore = viewModel.getScore().getValue() == null
+                        ? 0
+                        : viewModel.getScore().getValue();
                 intent.putExtra("FINAL_SCORE", finalScore);
-                //intent.putExtra("score", score);
-                //intent.putExtra("totalQuestions", totalQuestions);
-                //intent.putExtra("correctAnswers", correct);
-                //intent.putExtra("wrongAnswers", wrong);
-
                 startActivity(intent);
                 finish();
             } else {
-                // Al pasar de pregunta el fragment se actualiza
                 viewModel.nextQuestion();
             }
         });
@@ -105,20 +104,16 @@ public class GameActivity extends BaseActivity {
         TextView tvFeedback = findViewById(R.id.tvFeedback);
         if (tvFeedback == null) return;
 
-        // Cancela animaciones y callbacks previos
         tvFeedback.animate().cancel();
         if (hideRunnable != null) handler.removeCallbacks(hideRunnable);
 
-        // Configura texto y color
         tvFeedback.setText(message);
         tvFeedback.setTextColor(ContextCompat.getColor(
                 this, isCorrect ? R.color.green_correct : R.color.red_incorrect));
 
-        // Pequeño movimiento
         tvFeedback.setTranslationY(-8f);
         tvFeedback.animate().translationY(0f).setDuration(180).start();
 
-        // Fade in
         tvFeedback.setAlpha(0f);
         tvFeedback.setVisibility(View.VISIBLE);
         tvFeedback.animate()
@@ -127,7 +122,6 @@ public class GameActivity extends BaseActivity {
                 .setInterpolator(new AccelerateDecelerateInterpolator())
                 .start();
 
-        // Fade out a los 2s
         hideRunnable = () -> tvFeedback.animate()
                 .alpha(0f)
                 .setDuration(180)
@@ -144,15 +138,14 @@ public class GameActivity extends BaseActivity {
         if (hideRunnable != null) handler.removeCallbacks(hideRunnable);
     }
 
-    // Cambia el texto a finalizar cuando es la última pregunta
     private void updateNextButton() {
         boolean enable = Boolean.TRUE.equals(viewModel.getValidated().getValue());
         btnNext.setEnabled(enable);
 
-        boolean last = viewModel.getCurrentIndex() == viewModel.getTotal() - 1;
+        boolean last = viewModel.getTotal() > 0 &&
+                viewModel.getCurrentIndex() == viewModel.getTotal() - 1;
         btnNext.setText(last ? "Finalizar" : "Siguiente");
     }
-
 
     private void showExitAlert() {
         new AlertDialog.Builder(this)

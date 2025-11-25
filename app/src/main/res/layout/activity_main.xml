@@ -12,7 +12,7 @@
 
     <RelativeLayout
         android:id="@+id/mainContent"
-        android:background="@drawable/fondoquiz"
+        android:background="@drawable/bg_main_activity"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:gravity="bottom|center"

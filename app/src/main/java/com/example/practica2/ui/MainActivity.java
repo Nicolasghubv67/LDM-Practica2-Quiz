@@ -2,18 +2,14 @@ package com.example.practica2.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.example.practica2.R;
 import com.example.practica2.QuizApplication;
 import com.example.practica2.media.SoundPlayer;
-
-import com.google.android.material.appbar.MaterialToolbar;
 
 public class MainActivity extends BaseActivity {
 

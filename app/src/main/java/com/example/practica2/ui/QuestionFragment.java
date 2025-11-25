@@ -20,7 +20,6 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.practica2.QuizApplication;
 import com.example.practica2.R;
-import com.example.practica2.media.SoundManager;
 import com.example.practica2.media.SoundPlayer;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.radiobutton.MaterialRadioButton;
@@ -44,14 +43,13 @@ public class QuestionFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        soundPlayer = ((QuizApplication) requireActivity()
-                .getApplication())
-                .getSoundPlayer();
+        soundPlayer = ((QuizApplication) requireActivity().getApplication()).getSoundPlayer();
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(
+            @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState
+    ) {
         return inflater.inflate(R.layout.fragment_question, container, false);
     }
 
@@ -73,33 +71,49 @@ public class QuestionFragment extends Fragment {
         rb4 = v.findViewById(R.id.rb4);
         btnCheck = v.findViewById(R.id.btnCheck);
 
-        // El Fragment observa y se actualiza solo
-        viewModel.getCurrentQuestionLive().observe(getViewLifecycleOwner(), q -> {
-            if (q != null) renderQuestion(q);
-        });
+        // OBSERVADORES
+        viewModel.getCurrentQuestionLive().observe(
+                getViewLifecycleOwner(),
+                q -> {
+                    if (q != null) renderQuestion(q);
+                    else renderEmptyState();
+                }
+        );
 
-        // Número de pregunta
-        viewModel.getCurrentIndexLive().observe(getViewLifecycleOwner(), idx -> {
-            String header = "Pregunta " + (idx + 1) + "/" + viewModel.getTotal();
-            tvHeader.setText(header);
-        });
+        viewModel.getCurrentIndexLive().observe(
+                getViewLifecycleOwner(),
+                idx -> tvHeader.setText(
+                        getString(R.string.question_header, idx + 1, viewModel.getTotal())
+                )
+        );
 
-        // Habilitación/inhabilitación por validación
-        viewModel.getValidated().observe(getViewLifecycleOwner(), validated -> {
-            boolean disabled = Boolean.TRUE.equals(validated);
-            btnCheck.setEnabled(!disabled);
-            for (int i = 0; i < rgOptions.getChildCount(); i++) {
-                rgOptions.getChildAt(i).setEnabled(!disabled);
-            }
-        });
+        viewModel.getValidated().observe(
+                getViewLifecycleOwner(),
+                validated -> {
+                    boolean disable = Boolean.TRUE.equals(validated);
+                    btnCheck.setEnabled(!disable);
+                    setOptionsEnabled(!disable);
+                }
+        );
 
         btnCheck.setOnClickListener(view -> handleCheck());
     }
 
+    // --------------------------------------------------------------------
+    //  Renderizado de preguntas
+    // --------------------------------------------------------------------
 
+    private void renderEmptyState() {
+        tvQuestion.setText(getString(R.string.loading_question));
+        cardImage.setVisibility(View.GONE);
+
+        clearRadio(rb1);
+        clearRadio(rb2);
+        clearRadio(rb3);
+        clearRadio(rb4);
+    }
 
     private void renderQuestion(GameViewModel.Question q) {
-        // Reset selección/estado
         rgOptions.clearCheck();
         clearRadio(rb1);
         clearRadio(rb2);
@@ -107,31 +121,26 @@ public class QuestionFragment extends Fragment {
         clearRadio(rb4);
 
         switch (q.type) {
-            case TEXT_WITH_TEXT_OPTIONS: {
+            case TEXT_WITH_TEXT_OPTIONS:
                 tvQuestion.setVisibility(View.VISIBLE);
                 tvQuestion.setText(q.questionText);
 
                 cardImage.setVisibility(View.GONE);
-                imgQuestion.setImageDrawable(null);
 
                 rb1.setText(q.optionTexts.get(0));
                 rb2.setText(q.optionTexts.get(1));
                 rb3.setText(q.optionTexts.get(2));
                 rb4.setText(q.optionTexts.get(3));
                 break;
-            }
 
-            case IMAGE_WITH_TEXT_OPTIONS: {
+            case IMAGE_WITH_TEXT_OPTIONS:
                 tvQuestion.setVisibility(View.GONE);
 
-                if (q.questionImageRes != null && q.questionImageRes != 0) {
+                if (q.questionImageRes != null) {
                     cardImage.setVisibility(View.VISIBLE);
-                    imgQuestion.setImageDrawable(
-                            AppCompatResources.getDrawable(requireContext(), q.questionImageRes)
-                    );
+                    imgQuestion.setImageResource(q.questionImageRes);
                 } else {
                     cardImage.setVisibility(View.GONE);
-                    imgQuestion.setImageDrawable(null);
                 }
 
                 rb1.setText(q.optionTexts.get(0));
@@ -139,107 +148,87 @@ public class QuestionFragment extends Fragment {
                 rb3.setText(q.optionTexts.get(2));
                 rb4.setText(q.optionTexts.get(3));
                 break;
-            }
 
-            case TEXT_WITH_IMAGE_OPTIONS: {
+            case TEXT_WITH_IMAGE_OPTIONS:
                 tvQuestion.setVisibility(View.VISIBLE);
                 tvQuestion.setText(q.questionText);
 
                 cardImage.setVisibility(View.GONE);
-                imgQuestion.setImageDrawable(null);
 
                 setupImageRadio(rb1, q.optionImageRes.get(0));
                 setupImageRadio(rb2, q.optionImageRes.get(1));
                 setupImageRadio(rb3, q.optionImageRes.get(2));
                 setupImageRadio(rb4, q.optionImageRes.get(3));
                 break;
-            }
         }
     }
 
+    // --------------------------------------------------------------------
+    // Helpers
+    // --------------------------------------------------------------------
 
-    // ————— Helpers ——————————————————————————————————————————————
+    private void setOptionsEnabled(boolean enabled) {
+        for (int i = 0; i < rgOptions.getChildCount(); i++) {
+            rgOptions.getChildAt(i).setEnabled(enabled);
+        }
+    }
 
     private void clearRadio(RadioButton rb) {
         rb.setText("");
         rb.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
-        rb.setCompoundDrawablePadding(dp(8));
-        int p = dp(16);
-        rb.setPadding(p, p, p, p);
+        rb.setPadding(dp(16), dp(16), dp(16), dp(16));
     }
 
     private void setupImageRadio(RadioButton rb, int imageRes) {
         rb.setText("");
-        if (imageRes != 0) {
-            Drawable d = AppCompatResources.getDrawable(requireContext(), imageRes);
-            rb.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
-        } else {
-            rb.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
-        }
+        Drawable d = AppCompatResources.getDrawable(requireContext(), imageRes);
+        rb.setCompoundDrawablesWithIntrinsicBounds(null, d, null, null);
         rb.setCompoundDrawablePadding(dp(8));
-        int p = dp(16);
-        rb.setPadding(p, p, p, p);
+        rb.setPadding(dp(16), dp(16), dp(16), dp(16));
     }
 
     private int dp(int value) {
         return (int) TypedValue.applyDimension(
-                TypedValue.COMPLEX_UNIT_DIP, value, getResources().getDisplayMetrics());
+                TypedValue.COMPLEX_UNIT_DIP,
+                value,
+                getResources().getDisplayMetrics()
+        );
     }
-    /**
-     * Maneja la validación de la respuesta seleccionada por el usuario.
-     * - Verifica si se ha seleccionado alguna opción.
-     * - Llama al ViewModel para validar la respuesta.
-     * - Muestra un feedback animado (correcto/incorrecto) en la Activity.
-     */
-    private void handleCheck() {
-        // Obtener el ID del RadioButton seleccionado
-        int checkedId = rgOptions.getCheckedRadioButtonId();
 
-        // Si no hay nada seleccionado, avisamos con un feedback visual
+    // --------------------------------------------------------------------
+    // Validación
+    // --------------------------------------------------------------------
+
+    private void handleCheck() {
+
+        int checkedId = rgOptions.getCheckedRadioButtonId();
         if (checkedId == -1) {
-            if (getActivity() instanceof GameActivity) {
-                ((GameActivity) getActivity()).showFeedback("Selecciona una opción", false);
-            }
+            ((GameActivity) requireActivity()).showFeedback("Selecciona una opción", false);
             return;
         }
 
-        // Determinar el índice seleccionado según el ID del RadioButton
-        int selectedIndex;
-        if (checkedId == R.id.rb1) {
-            selectedIndex = 0;
-        } else if (checkedId == R.id.rb2) {
-            selectedIndex = 1;
-        } else if (checkedId == R.id.rb3) {
-            selectedIndex = 2;
-        } else {
-            selectedIndex = 3;
-        }
+        int selectedIndex =
+                checkedId == R.id.rb1 ? 0 :
+                        checkedId == R.id.rb2 ? 1 :
+                                checkedId == R.id.rb3 ? 2 : 3;
 
-        // ViewModel valida la respuesta
         viewModel.validateAnswer(selectedIndex);
 
-        // Calculamos si fue correcta o no (para mostrar feedback)
-        boolean esCorrecta = selectedIndex == viewModel.getCurrentQuestion().correctIndex;
+        GameViewModel.Question current = viewModel.getCurrentQuestion();
+        if (current == null) return;
 
-        if (esCorrecta) {
-            soundPlayer.playCorrect();
-        } else {
-            soundPlayer.playWrong();
-        }
+        boolean correct = current.correctIndex == selectedIndex;
 
-        // Mostrar feedback visual desde la Activity (animación + color)
-        if (getActivity() instanceof GameActivity) {
-            ((GameActivity) getActivity()).showFeedback(
-                    esCorrecta ? getString(R.string.correcto_3) : getString(R.string.incorrecto_2),
-                    esCorrecta
-            );
-        }
+        if (correct) soundPlayer.playCorrect();
+        else         soundPlayer.playWrong();
 
-        // Deshabilitar los botones y Check temporalmente (la observación de validated lo hará igual)
+        ((GameActivity) requireActivity()).showFeedback(
+                correct ? getString(R.string.correcto_3)
+                        : getString(R.string.incorrecto_2),
+                correct
+        );
+
         btnCheck.setEnabled(false);
-        for (int i = 0; i < rgOptions.getChildCount(); i++) {
-            rgOptions.getChildAt(i).setEnabled(false);
-        }
+        setOptionsEnabled(false);
     }
-
 }

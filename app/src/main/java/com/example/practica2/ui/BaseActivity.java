@@ -27,7 +27,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         if (getSupportActionBar() != null) {
             // Mostrar flecha hacia atrás por defecto
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            // El título lo controlamos manualmente desde el XML
+            // Título en el XML
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
     }

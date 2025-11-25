@@ -17,7 +17,7 @@ public class MusicManager implements MusicPlayer {
     }
 
     private void initPlayer() {
-        //mediaPlayer = MediaPlayer.create(context, R.raw.bg_music); // crea bg_music.mp3 en res/raw
+        mediaPlayer = MediaPlayer.create(context, R.raw.bg_music);
         if (mediaPlayer != null) {
             mediaPlayer.setLooping(true);
         }
