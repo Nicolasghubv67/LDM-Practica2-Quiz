@@ -65,6 +65,7 @@
                 android:textStyle="bold"
                 android:visibility="gone"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:paddingStart="8dp"
                 android:paddingEnd="8dp"/>
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>

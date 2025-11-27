@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:id="@+id/tvDialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cu_ntas_preguntas_quieres"
+        android:textAppearance="?attr/textAppearanceTitleMedium"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/tvQuestionCountValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/_5"
+        android:textAppearance="?attr/textAppearanceBodyMedium"
+        android:layout_marginBottom="8dp" />
+
+    <com.google.android.material.slider.Slider
+        android:id="@+id/sliderQuestionCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:valueFrom="3"
+        android:valueTo="10"
+        android:stepSize="1"
+        android:value="5" />
+</LinearLayout>

@@ -2,6 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -19,18 +21,89 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
 
-        <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/switchSound"
+        <!-- Fila: sonido efectos -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sonido_efectos" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:minHeight="48dp">
 
-        <com.google.android.material.materialswitch.MaterialSwitch
-            android:id="@+id/switchMusic"
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/sonido_efectos"
+                android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchSound"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp"
+                tools:ignore="DuplicateSpeakableTextCheck" />
+        </LinearLayout>
+
+
+        <!-- Fila: música de fondo -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/musica_de_fondo"
-            android:layout_marginTop="16dp" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:minHeight="48dp"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/musica_de_fondo"
+                android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+            <com.google.android.material.materialswitch.MaterialSwitch
+                android:id="@+id/switchMusic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="48dp" />
+        </LinearLayout>
+
+        <!-- Separador -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="24dp"
+            android:background="?attr/colorOutline" />
+
+        <!-- Fila de idioma -->
+        <LinearLayout
+            android:id="@+id/rowLanguage"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"
+            android:minHeight="48dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
+
+            <TextView
+                android:id="@+id/tvLanguageLabel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/settings_language"
+                android:textAppearance="?attr/textAppearanceBodyLarge" />
+
+            <TextView
+                android:id="@+id/tvCurrentLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_language_spanish"
+                android:textAppearance="?attr/textAppearanceBodyMedium" />
+        </LinearLayout>
 
     </LinearLayout>
 

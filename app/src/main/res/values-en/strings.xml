@@ -1,0 +1,371 @@
+<resources>
+    <!-- App name -->
+    <string name="app_name">Quiz Game</string>
+
+    <!-- Generic buttons -->
+    <string name="empezar">Start</string>
+    <string name="cancelar">Cancel</string>
+    <string name="comprobar">Check</string>
+    <string name="siguiente">Next</string>
+    <string name="volver">Back</string>
+    <string name="finalizar">Finish</string>
+    <string name="si">Yes</string>
+
+    <!-- Simple numeric values used in UI -->
+    <string name="_0">0</string>
+    <string name="_5">5</string>
+
+    <!-- Navigation / score -->
+    <string name="puntuaci_n">Score</string>
+    <string name="volver_al_inicio">Back to home</string>
+    <string name="correcto_3">Correct! +3</string>
+    <string name="incorrecto_2">Wrong -2</string>
+
+    <!-- Sound and music (short labels) -->
+    <string name="sonido">Sound</string>
+    <string name="musica">Music</string>
+    <string name="sound">Sound</string>
+    <string name="music">Music</string>
+
+    <!-- Longer descriptions for settings -->
+    <string name="sonido_efectos">Sound effects</string>
+    <string name="musica_de_fondo">Background music</string>
+
+    <!-- Main menu entries -->
+    <string name="ajustes">Settings</string>
+    <string name="ayuda">Help</string>
+    <string name="informacion">Information</string>
+
+    <!-- Accessible description for the logo -->
+    <string name="logo_app_quiz">Quiz app logo</string>
+
+    <!-- Question screen header and status -->
+    <string name="question_header">Question %1$d/%2$d</string>
+    <string name="loading_question">Loading question...</string>
+    <string name="select_option">Select an option</string>
+
+    <!-- Simple result labels (table columns) -->
+    <string name="correctas">Correct</string>
+    <string name="incorrectas">Incorrect</string>
+    <string name="totales">Total</string>
+    <string name="fecha">Date</string>
+
+    <!-- Result screen texts -->
+    <string name="results_title">Results</string>
+    <string name="final_score_label">Final score: %1$d</string>
+    <string name="label_wrong_answers">Incorrect</string>
+    <string name="label_correct_answers">Correct</string>
+    <string name="label_total_questions">Total questions</string>
+
+    <!-- Question count selector -->
+    <string name="cu_ntas_preguntas_quieres">How many questions do you want?</string>
+
+    <!-- Help: main title -->
+    <string name="help_title">How the quiz works</string>
+
+    <!-- Help block: introduction -->
+    <string name="help_intro_title">Welcome to the quiz</string>
+    <string name="help_intro_body">This app lets you practise with multiple-choice questions.
+You choose how many questions you want to answer and at the end you will see a summary of your game.</string>
+
+    <!-- Help block: how to play (steps) -->
+    <string name="help_how_to_play_title">How to play</string>
+    <string name="help_how_to_play_steps">1. On the home screen, tap the start button and choose the number of questions (between 3 and 10).\n2. Read each question and select one of the options.\n3. You will see a message telling you if your answer is correct or wrong.\n4. If you have not selected any option yet, the continue button will be disabled.\n5. Tap "Next" until you reach the last question and then "Finish".</string>
+
+    <!-- Help block: results and local storage -->
+    <string name="help_results_title">Results and saved data</string>
+    <string name="help_results_body">At the end of the game you will see your score, the number of correct and incorrect answers and the total questions.\nEach game is saved on your device and you can check the history on the results screen.\nNo data is sent to external servers: everything stays on your phone.</string>
+
+    <!-- Language settings -->
+    <string name="settings_language">App language</string>
+    <string name="settings_language_spanish">Spanish</string>
+    <string name="settings_language_english">English</string>
+    <string name="settings_language_dialog_title">Language</string>
+
+    <!-- Exit quiz dialog -->
+    <string name="salir_del_quiz">Exit the quiz</string>
+    <string name="aviso_perder_progreso">You will lose your progress. Do you want to return to the home screen?</string>
+
+    <!-- P1 -->
+    <string name="q1_question">What is the largest ocean in the world?</string>
+    <string name="q1_option_a">Atlantic</string>
+    <string name="q1_option_b">Indian</string>
+    <string name="q1_option_c">Pacific</string>
+    <string name="q1_option_d">Arctic</string>
+
+    <!-- P2 (Italy flag) -->
+    <string name="q2_option_a">Spain</string>
+    <string name="q2_option_b">Italy</string>
+    <string name="q2_option_c">Romania</string>
+    <string name="q2_option_d">Portugal</string>
+
+    <!-- P3 -->
+    <string name="q3_question">Which of these images shows a mammal?</string>
+
+    <!-- P4 -->
+    <string name="q4_question">In which country was the writer Franz Kafka born?</string>
+    <string name="q4_option_a">Germany</string>
+    <string name="q4_option_b">Austria-Hungary</string>
+    <string name="q4_option_c">Switzerland</string>
+    <string name="q4_option_d">Czechoslovakia</string>
+
+    <!-- P5 -->
+    <string name="q5_question">Which chemical element has atomic number 79?</string>
+    <string name="q5_option_a">Mercury</string>
+    <string name="q5_option_b">Gold</string>
+    <string name="q5_option_c">Copper</string>
+    <string name="q5_option_d">Uranium</string>
+
+    <!-- P6 -->
+    <string name="q6_question">Which civilization built the city of Machu Picchu?</string>
+    <string name="q6_option_a">Aztec</string>
+    <string name="q6_option_b">Maya</string>
+    <string name="q6_option_c">Inca</string>
+    <string name="q6_option_d">Moche</string>
+
+    <!-- P7 -->
+    <string name="q7_question">Which Greek philosopher was teacher of Aristotle?</string>
+    <string name="q7_option_a">Pythagoras</string>
+    <string name="q7_option_b">Plato</string>
+    <string name="q7_option_c">Socrates</string>
+    <string name="q7_option_d">Heraclitus</string>
+
+    <!-- P8 -->
+    <string name="q8_question">What is the most famous work of the Norwegian painter Edvard Munch?</string>
+    <string name="q8_option_a">The Scream</string>
+    <string name="q8_option_b">The Madonna</string>
+    <string name="q8_option_c">The Kiss</string>
+    <string name="q8_option_d">The Dance</string>
+
+    <!-- P9 -->
+    <string name="q9_question">Who was the first European to reach India by sailing around Africa?</string>
+    <string name="q9_option_a">Ferdinand Magellan</string>
+    <string name="q9_option_b">Vasco da Gama</string>
+    <string name="q9_option_c">Bartolomeu Dias</string>
+    <string name="q9_option_d">Marco Polo</string>
+
+    <!-- P10 -->
+    <string name="q10_question">What is the longest river in Europe?</string>
+    <string name="q10_option_a">Rhine</string>
+    <string name="q10_option_b">Volga</string>
+    <string name="q10_option_c">Danube</string>
+    <string name="q10_option_d">Dnieper</string>
+
+    <!-- P11 -->
+    <string name="q11_question">Who composed the opera "The Magic Flute"?</string>
+    <string name="q11_option_a">Beethoven</string>
+    <string name="q11_option_b">Haydn</string>
+    <string name="q11_option_c">Mozart</string>
+    <string name="q11_option_d">Wagner</string>
+
+    <!-- P12 -->
+    <string name="q12_question">In which year did the Berlin Wall fall?</string>
+    <string name="q12_option_a">1985</string>
+    <string name="q12_option_b">1987</string>
+    <string name="q12_option_c">1989</string>
+    <string name="q12_option_d">1991</string>
+
+    <!-- P13 -->
+    <string name="q13_question">Which mathematician formulated the so-called "last theorem" that took centuries to prove?</string>
+    <string name="q13_option_a">Carl Friedrich Gauss</string>
+    <string name="q13_option_b">Pierre de Fermat</string>
+    <string name="q13_option_c">Leonhard Euler</string>
+    <string name="q13_option_d">Bernhard Riemann</string>
+
+    <!-- P14 -->
+    <string name="q14_question">What is the most influential book of Charles Darwin?</string>
+    <string name="q14_option_a">The Descent of Man</string>
+    <string name="q14_option_b">The Voyage of the Beagle</string>
+    <string name="q14_option_c">On the Origin of Species</string>
+    <string name="q14_option_d">Natural Selection</string>
+
+    <!-- P15 -->
+    <string name="q15_question">Which country has the largest number of islands in the world?</string>
+    <string name="q15_option_a">Indonesia</string>
+    <string name="q15_option_b">Philippines</string>
+    <string name="q15_option_c">Sweden</string>
+    <string name="q15_option_d">Japan</string>
+
+    <!-- P16 -->
+    <string name="q16_question">In which year did the First World War begin?</string>
+    <string name="q16_option_a">1914</string>
+    <string name="q16_option_b">1918</string>
+    <string name="q16_option_c">1921</string>
+    <string name="q16_option_d">1905</string>
+
+    <!-- P17 -->
+    <string name="q17_question">What is the longest river in the world according to modern measurements?</string>
+    <string name="q17_option_a">Nile</string>
+    <string name="q17_option_b">Amazon</string>
+    <string name="q17_option_c">Yangtze</string>
+    <string name="q17_option_d">Mississippi</string>
+
+    <!-- P18 -->
+    <string name="q18_question">Who wrote the novel "Crime and Punishment"?</string>
+    <string name="q18_option_a">Tolstoy</string>
+    <string name="q18_option_b">Dostoevsky</string>
+    <string name="q18_option_c">Gogol</string>
+    <string name="q18_option_d">Pushkin</string>
+
+    <!-- P19 -->
+    <string name="q19_question">What is the largest planet in the Solar System?</string>
+    <string name="q19_option_a">Jupiter</string>
+    <string name="q19_option_b">Saturn</string>
+    <string name="q19_option_c">Uranus</string>
+    <string name="q19_option_d">Neptune</string>
+
+    <!-- P20 -->
+    <string name="q20_question">Which civilization built Machu Picchu?</string>
+    <string name="q20_option_a">Aztec</string>
+    <string name="q20_option_b">Inca</string>
+    <string name="q20_option_c">Maya</string>
+    <string name="q20_option_d">Olmec</string>
+
+    <!-- P21 -->
+    <string name="q21_question">Which scientist proposed the theory of relativity?</string>
+    <string name="q21_option_a">Max Planck</string>
+    <string name="q21_option_b">Isaac Newton</string>
+    <string name="q21_option_c">Albert Einstein</string>
+    <string name="q21_option_d">Niels Bohr</string>
+
+    <!-- P22 -->
+    <string name="q22_question">Which language has the largest number of native speakers in the world?</string>
+    <string name="q22_option_a">English</string>
+    <string name="q22_option_b">Hindi</string>
+    <string name="q22_option_c">Mandarin Chinese</string>
+    <string name="q22_option_d">Spanish</string>
+
+    <!-- P23 -->
+    <string name="q23_question">Which composer created the ballet "Swan Lake"?</string>
+    <string name="q23_option_a">Mozart</string>
+    <string name="q23_option_b">Tchaikovsky</string>
+    <string name="q23_option_c">Beethoven</string>
+    <string name="q23_option_d">Rachmaninoff</string>
+
+    <!-- P24 -->
+    <string name="q24_question">What was the capital of the Byzantine Empire?</string>
+    <string name="q24_option_a">Rome</string>
+    <string name="q24_option_b">Athens</string>
+    <string name="q24_option_c">Constantinople</string>
+    <string name="q24_option_d">Ankara</string>
+
+    <!-- P25 -->
+    <string name="q25_question">Who painted "The Starry Night"?</string>
+    <string name="q25_option_a">Van Gogh</string>
+    <string name="q25_option_b">Picasso</string>
+    <string name="q25_option_c">Dalí</string>
+    <string name="q25_option_d">Monet</string>
+
+    <!-- P26 -->
+    <string name="q26_question">What is the capital of Canada?</string>
+    <string name="q26_option_a">Toronto</string>
+    <string name="q26_option_b">Ottawa</string>
+    <string name="q26_option_c">Vancouver</string>
+    <string name="q26_option_d">Montreal</string>
+
+    <!-- P27 -->
+    <string name="q27_question">Who wrote "One Hundred Years of Solitude"?</string>
+    <string name="q27_option_a">Pablo Neruda</string>
+    <string name="q27_option_b">Julio Cortázar</string>
+    <string name="q27_option_c">Gabriel García Márquez</string>
+    <string name="q27_option_d">Borges</string>
+
+    <!-- P28 -->
+    <string name="q28_question">Which of these numbers is a prime number?</string>
+    <string name="q28_option_a">21</string>
+    <string name="q28_option_b">51</string>
+    <string name="q28_option_c">97</string>
+    <string name="q28_option_d">85</string>
+
+    <!-- P29 -->
+    <string name="q29_question">Which country invented paper?</string>
+    <string name="q29_option_a">India</string>
+    <string name="q29_option_b">Egypt</string>
+    <string name="q29_option_c">China</string>
+    <string name="q29_option_d">Iran</string>
+
+    <!-- P30 -->
+    <string name="q30_question">Which is the deepest ocean?</string>
+    <string name="q30_option_a">Indian</string>
+    <string name="q30_option_b">Atlantic</string>
+    <string name="q30_option_c">Pacific</string>
+    <string name="q30_option_d">Arctic</string>
+
+    <!-- P31 -->
+    <string name="q31_question">Who developed the theory of evolution by natural selection?</string>
+    <string name="q31_option_a">Jean-Baptiste Lamarck</string>
+    <string name="q31_option_b">Charles Darwin</string>
+    <string name="q31_option_c">Gregor Mendel</string>
+    <string name="q31_option_d">Carl Linnaeus</string>
+
+    <!-- P32 -->
+    <string name="q32_question">Which country has the largest number of active volcanoes on Earth?</string>
+    <string name="q32_option_a">Indonesia</string>
+    <string name="q32_option_b">Japan</string>
+    <string name="q32_option_c">United States</string>
+    <string name="q32_option_d">Papua New Guinea</string>
+
+    <!-- P33 -->
+    <string name="q33_question">What is the largest object in the Kuiper Belt?</string>
+    <string name="q33_option_a">Pluto</string>
+    <string name="q33_option_b">Eris</string>
+    <string name="q33_option_c">Makemake</string>
+    <string name="q33_option_d">Haumea</string>
+
+    <!-- P34 -->
+    <string name="q34_question">Which European king was nicknamed "The Holy Roman Emperor who never won a battle"?</string>
+    <string name="q34_option_a">Rudolf II</string>
+    <string name="q34_option_b">Ferdinand II</string>
+    <string name="q34_option_c">Maximilian I</string>
+    <string name="q34_option_d">Charles VII</string>
+
+    <!-- P35 -->
+    <string name="q35_question">What is the deepest lake in the world after Lake Baikal?</string>
+    <string name="q35_option_a">Tanganyika</string>
+    <string name="q35_option_b">Vostok</string>
+    <string name="q35_option_c">Caspian</string>
+    <string name="q35_option_d">OHiggins San Martin</string>
+
+    <!-- P36 -->
+    <string name="q36_question">What type of star is Betelgeuse?</string>
+    <string name="q36_option_a">White dwarf</string>
+    <string name="q36_option_b">Red supergiant</string>
+    <string name="q36_option_c">Blue giant</string>
+    <string name="q36_option_d">Neutron star</string>
+
+    <!-- P37 -->
+    <string name="q37_question">In which year did the city of Constantinople fall to the Ottoman Empire?</string>
+    <string name="q37_option_a">1435</string>
+    <string name="q37_option_b">1453</string>
+    <string name="q37_option_c">1470</string>
+    <string name="q37_option_d">1492</string>
+
+    <!-- P38 -->
+    <string name="q38_question">What was the first film to win the Oscar for Best Foreign Language Film?</string>
+    <string name="q38_option_a">La Strada</string>
+    <string name="q38_option_b">Rashōmon</string>
+    <string name="q38_option_c">Wild Strawberries</string>
+    <string name="q38_option_d">Bicycle Thieves</string>
+
+    <!-- P39 -->
+    <string name="q39_question">Which country has the longest coastline in the world?</string>
+    <string name="q39_option_a">Russia</string>
+    <string name="q39_option_b">Australia</string>
+    <string name="q39_option_c">Canada</string>
+    <string name="q39_option_d">Indonesia</string>
+
+    <!-- P40 -->
+    <string name="q40_question">Which empire finally destroyed Carthage in the Third Punic War?</string>
+    <string name="q40_option_a">Roman Empire</string>
+    <string name="q40_option_b">Kingdom of Macedonia</string>
+    <string name="q40_option_c">Persian Empire</string>
+    <string name="q40_option_d">Kingdom of Numidia</string>
+
+    <!-- P41 -->
+    <string name="q41_question">Who directed the German Expressionist film "Metropolis" (1927)?</string>
+    <string name="q41_option_a">Fritz Lang</string>
+    <string name="q41_option_b">F. W. Murnau</string>
+    <string name="q41_option_c">G. W. Pabst</string>
+    <string name="q41_option_d">Robert Wiene</string>
+
+</resources>

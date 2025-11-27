@@ -75,25 +75,29 @@
                         android:id="@+id/rb1"
                         style="@style/Widget.MyApp.Radio.Option"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        tools:ignore="DuplicateSpeakableTextCheck,VisualLintButtonSize" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/rb2"
                         style="@style/Widget.MyApp.Radio.Option"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        tools:ignore="VisualLintButtonSize" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/rb3"
                         style="@style/Widget.MyApp.Radio.Option"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        tools:ignore="VisualLintButtonSize" />
 
                     <com.google.android.material.radiobutton.MaterialRadioButton
                         android:id="@+id/rb4"
                         style="@style/Widget.MyApp.Radio.Option"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        tools:ignore="VisualLintButtonSize" />
 
                 </RadioGroup>
 
@@ -101,13 +105,16 @@
                     android:id="@+id/btnCheck"
                     style="@style/Widget.MyApp.Button.Filled"
                     android:layout_width="match_parent"
+                    android:maxWidth="600dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
                     android:layout_height="48dp"
                     android:layout_marginTop="16dp"
                     android:text="@string/comprobar"
                     app:icon="@drawable/ic_check_24"
                     app:iconPadding="8dp"
-                    app:iconGravity="textStart"/>
-
+                    app:iconGravity="textStart"
+                    tools:ignore="VisualLintButtonSize" />
 
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

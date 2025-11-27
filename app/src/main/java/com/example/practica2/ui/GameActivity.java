@@ -16,21 +16,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.example.practica2.AppPreferences;
-import com.example.practica2.QuizApplication;
 import com.example.practica2.R;
-import com.example.practica2.media.MusicPlayer;
 import com.example.practica2.repository.GameRepository;
 
 public class GameActivity extends BaseActivity {
 
+    public static final String EXTRA_QUESTION_COUNT = "QUESTION_COUNT";
     private final Handler handler = new Handler(Looper.getMainLooper());
     private GameViewModel viewModel;
     private TextView score;
     private Button btnNext;
     private Runnable hideRunnable;
-
-    private MusicPlayer musicPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,40 +34,41 @@ public class GameActivity extends BaseActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_game);
 
-        QuizApplication app = (QuizApplication) getApplication();
-        musicPlayer = app.getMusicPlayer();
-
-        toolbar.setNavigationOnClickListener(v -> showExitAlert());
-
-        // ViewModel (lógica de juego + LiveData)
         viewModel = new ViewModelProvider(this).get(GameViewModel.class);
 
-        // Repositorio (acceso a Room). Carga 5 preguntas aleatorias y las mete en el ViewModel.
+        int questionCount = getIntent().getIntExtra(EXTRA_QUESTION_COUNT, 5);
+
+        // Cargar preguntas aleatorias desde Room
         GameRepository repository = new GameRepository(this);
-        repository.getRandomQuestionsAsync(5, loadedQuestions ->
-                runOnUiThread(() -> viewModel.setQuestionsFromDb(loadedQuestions))
+        repository.getRandomQuestionsAsync(questionCount, loadedQuestions ->
+                        runOnUiThread(() -> viewModel.setQuestionsFromDb(loadedQuestions))
         );
 
         score   = findViewById(R.id.tvScore);
         btnNext = findViewById(R.id.btnNext);
         Button btnBack = findViewById(R.id.btnBack);
 
-        // Puntuación actual
         viewModel.getScore().observe(this, s -> score.setText(String.valueOf(s)));
-
-        // Cualquier cambio de validación o índice actual actualiza el estado/etiqueta del botón
         viewModel.getValidated().observe(this, v -> updateNextButton());
         viewModel.getCurrentIndexLive().observe(this, idx -> updateNextButton());
 
-        // Navegación "Siguiente / Finalizar"
         btnNext.setOnClickListener(v -> {
             boolean last = viewModel.isLastQuestion();
             if (last) {
                 Intent intent = new Intent(GameActivity.this, ResultsActivity.class);
+
                 int finalScore = viewModel.getScore().getValue() == null
                         ? 0
                         : viewModel.getScore().getValue();
+
+                int correct = viewModel.getCorrectAnswersValue();
+                int wrong   = viewModel.getWrongAnswersValue();
+
                 intent.putExtra("FINAL_SCORE", finalScore);
+                intent.putExtra("TOTAL_QUESTIONS", viewModel.getTotal());
+                intent.putExtra("CORRECT_ANSWERS", correct);
+                intent.putExtra("WRONG_ANSWERS", wrong);
+
                 startActivity(intent);
                 finish();
             } else {
@@ -79,25 +76,11 @@ public class GameActivity extends BaseActivity {
             }
         });
 
-        // Botón atrás con confirmación
+
         btnBack.setOnClickListener(v -> showExitAlert());
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override public void handleOnBackPressed() { showExitAlert(); }
         });
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (AppPreferences.isMusicEnabled(this)) {
-            musicPlayer.start();
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        musicPlayer.pause();
     }
 
     public void showFeedback(String message, boolean isCorrect) {
@@ -144,15 +127,15 @@ public class GameActivity extends BaseActivity {
 
         boolean last = viewModel.getTotal() > 0 &&
                 viewModel.getCurrentIndex() == viewModel.getTotal() - 1;
-        btnNext.setText(last ? "Finalizar" : "Siguiente");
+        btnNext.setText(last ? R.string.finalizar : R.string.siguiente);
     }
 
     private void showExitAlert() {
         new AlertDialog.Builder(this)
-                .setTitle("Salir del quiz")
-                .setMessage("Perderás el progreso. ¿Quieres volver a la pantalla de inicio?")
-                .setPositiveButton("Sí", (DialogInterface dialog, int which) -> finish())
-                .setNegativeButton("Cancelar", null)
+                .setTitle(R.string.salir_del_quiz)
+                .setMessage(R.string.aviso_perder_progreso)
+                .setPositiveButton(R.string.si, (DialogInterface dialog, int which) -> finish())
+                .setNegativeButton(R.string.cancelar, null)
                 .show();
     }
 }

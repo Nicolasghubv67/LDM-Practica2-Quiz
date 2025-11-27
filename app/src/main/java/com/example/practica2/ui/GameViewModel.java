@@ -18,15 +18,10 @@ public class GameViewModel extends ViewModel {
 
     public static class Question {
         public final QuestionType type;
-
-        // Enunciado
         public final String  questionText;
         public final Integer questionImageRes;
-
-        // Opciones
         public final List<String>  optionTexts;
         public final List<Integer> optionImageRes;
-
         public final int correctIndex;
 
         private Question(QuestionType type,
@@ -47,7 +42,7 @@ public class GameViewModel extends ViewModel {
             return new Question(QuestionType.TEXT_WITH_TEXT_OPTIONS, q, null, options, null, correct);
         }
 
-        public static Question imageWithText(int imageRes, List<String> options, int correct) {
+        public static Question imageWithText(Integer imageRes, List<String> options, int correct) {
             return new Question(QuestionType.IMAGE_WITH_TEXT_OPTIONS, null, imageRes, options, null, correct);
         }
 
@@ -57,6 +52,8 @@ public class GameViewModel extends ViewModel {
     }
 
     private final MutableLiveData<Integer> score              = new MutableLiveData<>(0);
+    private final MutableLiveData<Integer> correctAnswers = new MutableLiveData<>(0);
+    private final MutableLiveData<Integer> wrongAnswers   = new MutableLiveData<>(0);
     private final MutableLiveData<Boolean> validated          = new MutableLiveData<>(false);
     private final MutableLiveData<Integer> currentIndexLive   = new MutableLiveData<>(0);
     private final MutableLiveData<Question> currentQuestionLive = new MutableLiveData<>();
@@ -64,9 +61,7 @@ public class GameViewModel extends ViewModel {
     private final List<Question> questions = new ArrayList<>();
     private int currentIndex = 0;
 
-    public GameViewModel() {
-        // Se rellenan las preguntas desde setQuestionsFromDb()
-    }
+    public GameViewModel() {}
 
     public void setQuestionsFromDb(List<Question> newQuestions) {
         if (newQuestions == null || newQuestions.isEmpty()) return;
@@ -76,21 +71,30 @@ public class GameViewModel extends ViewModel {
 
         currentIndex = 0;
         currentIndexLive.setValue(0);
-
         score.setValue(0);
         validated.setValue(false);
+        correctAnswers.setValue(0);
+        wrongAnswers.setValue(0);
         currentQuestionLive.setValue(questions.get(0));
     }
 
-    // -------- Getters de LiveData / estado --------
-
-    public LiveData<Integer> getScore()                    { return score; }
-    public LiveData<Boolean> getValidated()                { return validated; }
-    public LiveData<Integer> getCurrentIndexLive()         { return currentIndexLive; }
-    public LiveData<Question> getCurrentQuestionLive()     { return currentQuestionLive; }
+    public LiveData<Integer> getScore()                { return score; }
+    public LiveData<Boolean> getValidated()            { return validated; }
+    public LiveData<Integer> getCurrentIndexLive()     { return currentIndexLive; }
+    public LiveData<Question> getCurrentQuestionLive() { return currentQuestionLive; }
 
     public int getCurrentIndex() { return currentIndex; }
     public int getTotal()        { return questions.size(); }
+
+    public int getCorrectAnswersValue() {
+        Integer v = correctAnswers.getValue();
+        return v == null ? 0 : v;
+    }
+
+    public int getWrongAnswersValue() {
+        Integer v = wrongAnswers.getValue();
+        return v == null ? 0 : v;
+    }
 
     @Nullable
     public Question getCurrentQuestion() {
@@ -98,18 +102,31 @@ public class GameViewModel extends ViewModel {
         return questions.get(currentIndex);
     }
 
-    // -------- Lógica del juego --------
-
     public void validateAnswer(int selectedIndex) {
         if (Boolean.TRUE.equals(validated.getValue())) return;
         Question q = getCurrentQuestion();
         if (q == null) return;
 
+        boolean isCorrect = (selectedIndex == q.correctIndex);
+
         int s = score.getValue() == null ? 0 : score.getValue();
-        s += (selectedIndex == q.correctIndex) ? 3 : -2;
+        s += isCorrect ? 3 : -2;
         score.setValue(s);
+
+        Integer c = correctAnswers.getValue();
+        Integer w = wrongAnswers.getValue();
+        if (c == null) c = 0;
+        if (w == null) w = 0;
+
+        if (isCorrect) {
+            correctAnswers.setValue(c + 1);
+        } else {
+            wrongAnswers.setValue(w + 1);
+        }
+
         validated.setValue(true);
     }
+
 
     public void nextQuestion() {
         if (currentIndex < questions.size() - 1) {
@@ -126,12 +143,12 @@ public class GameViewModel extends ViewModel {
 
     public void reset() {
         if (questions.isEmpty()) return;
-
         currentIndex = 0;
         currentIndexLive.setValue(0);
-
         score.setValue(0);
         validated.setValue(false);
+        correctAnswers.setValue(0);
+        wrongAnswers.setValue(0);
         currentQuestionLive.setValue(questions.get(0));
     }
 }

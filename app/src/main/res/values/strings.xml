@@ -1,26 +1,372 @@
 <resources>
+    <!-- Nombre de la aplicación -->
     <string name="app_name">Quiz Game</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Botones genéricos -->
+    <string name="empezar">Empezar</string>
+    <string name="cancelar">Cancelar</string>
     <string name="comprobar">Comprobar</string>
     <string name="siguiente">Siguiente</string>
     <string name="volver">Volver</string>
+    <string name="finalizar">Finalizar</string>
+    <string name="si">Sí</string>
+
+    <!-- Valores numéricos simples (usados en UI) -->
     <string name="_0">0</string>
-    <string name="puntuaci_n">Puntuación: </string>
+    <string name="_5">5</string>
+
+    <!-- Navegación / puntuación -->
+    <string name="puntuaci_n">Puntuación</string>
     <string name="volver_al_inicio">Volver al inicio</string>
     <string name="correcto_3">¡Correcto! +3</string>
     <string name="incorrecto_2">Incorrecto -2</string>
-    <string name="sonido">sonido</string>
-    <string name="musica">musica</string>
+
+    <!-- Sonido y música (etiquetas cortas) -->
+    <string name="sonido">Sonido</string>
+    <string name="musica">Música</string>
+    <string name="sound">Sonido</string>
+    <string name="music">Música</string>
+
+    <!-- Descripciones más largas para ajustes -->
     <string name="sonido_efectos">Efectos de sonido</string>
     <string name="musica_de_fondo">Música de fondo</string>
+
+    <!-- Entradas de menú principal -->
     <string name="ajustes">Ajustes</string>
     <string name="ayuda">Ayuda</string>
-    <string name="logo_app_quiz">Logo App Quiz</string>
-    <string name="sound">Sonido</string>
-    <string name="music">Musica</string>
     <string name="informacion">Información</string>
+
+    <!-- Descripción accesible del logo -->
+    <string name="logo_app_quiz">Logo App Quiz</string>
+
+    <!-- Cabecera y estado de la pantalla de preguntas -->
     <string name="question_header">Pregunta %1$d/%2$d</string>
     <string name="loading_question">Cargando pregunta...</string>
     <string name="select_option">Selecciona una opción</string>
+
+    <!-- Etiquetas de resultados simples (columna/tabla) -->
+    <string name="correctas">Correctas</string>
+    <string name="incorrectas">Incorrectas</string>
+    <string name="totales">Totales</string>
+    <string name="fecha">Fecha</string>
+
+    <!-- Textos de la pantalla de resultados -->
+    <string name="results_title">Resultados</string>
+    <string name="final_score_label">Puntuación final: %1$d</string>
+    <string name="label_wrong_answers">Incorrectas</string>
+    <string name="label_correct_answers">Correctas</string>
+    <string name="label_total_questions">Preguntas totales</string>
+
+    <!-- Selector de número de preguntas -->
+    <string name="cu_ntas_preguntas_quieres">¿Cuántas preguntas quieres?</string>
+
+    <!-- Título general de ayuda -->
+    <string name="help_title">Cómo funciona el quiz</string>
+
+    <!-- Bloque de ayuda: introducción -->
+    <string name="help_intro_title">Bienvenido al quiz</string>
+    <string name="help_intro_body">Esta app te permite practicar con preguntas tipo test.
+Tú eliges cuántas preguntas quieres responder y al final verás un resumen de tu partida.</string>
+
+    <!-- Bloque de ayuda: cómo jugar (pasos) -->
+    <string name="help_how_to_play_title">Cómo jugar</string>
+    <string name="help_how_to_play_steps">1. En la pantalla de inicio, pulsa el botón de comenzar y elige el número de preguntas (entre 3 y 10).\n2. Lee cada pregunta y selecciona una de las opciones.\n3. Verás un mensaje indicando si tu respuesta es correcta o incorrecta.\n4. Si todavía no has elegido opción, el botón de continuar estará desactivado.\n5. Pulsa "Siguiente" hasta llegar a la última pregunta y luego "Finalizar".</string>
+
+    <!-- Bloque de ayuda: resultados y almacenamiento local -->
+    <string name="help_results_title">Resultados y datos guardados</string>
+    <string name="help_results_body">Al terminar la partida verás tu puntuación, el número de respuestas correctas e incorrectas y el total de preguntas.\nCada partida se guarda en tu dispositivo y puedes consultar el historial en la pantalla de resultados.\nNo se envían datos a servidores externos: todo se queda en tu móvil.</string>
+
+    <!-- Ajustes de idioma -->
+    <string name="settings_language">Idioma de la app</string>
+    <string name="settings_language_spanish">Español</string>
+    <string name="settings_language_english">Inglés</string>
+    <string name="settings_language_dialog_title">Idioma</string>
+
+    <!-- Diálogo para salir del quiz -->
+    <string name="salir_del_quiz">Salir del quiz</string>
+    <string name="aviso_perder_progreso">Perderás el progreso. ¿Quieres volver a la pantalla de inicio?</string>
+
+    <!-- P1 -->
+    <string name="q1_question">¿Cuál es el océano más grande del mundo?</string>
+    <string name="q1_option_a">Atlántico</string>
+    <string name="q1_option_b">Índico</string>
+    <string name="q1_option_c">Pacífico</string>
+    <string name="q1_option_d">Ártico</string>
+
+    <!-- P2 (bandera Italia) -->
+    <string name="q2_option_a">España</string>
+    <string name="q2_option_b">Italia</string>
+    <string name="q2_option_c">Rumanía</string>
+    <string name="q2_option_d">Portugal</string>
+
+    <!-- P3 -->
+    <string name="q3_question">¿Cuál de estas imágenes corresponde a un mamífero?</string>
+
+    <!-- P4 -->
+    <string name="q4_question">¿En qué país nació el escritor Franz Kafka?</string>
+    <string name="q4_option_a">Alemania</string>
+    <string name="q4_option_b">Austria-Hungría</string>
+    <string name="q4_option_c">Suiza</string>
+    <string name="q4_option_d">Checoslovaquia</string>
+
+    <!-- P5 -->
+    <string name="q5_question">¿Cuál es el elemento químico con el número atómico 79?</string>
+    <string name="q5_option_a">Mercurio</string>
+    <string name="q5_option_b">Oro</string>
+    <string name="q5_option_c">Cobre</string>
+    <string name="q5_option_d">Uranio</string>
+
+    <!-- P6 -->
+    <string name="q6_question">¿Qué civilización construyó la ciudad de Machu Picchu?</string>
+    <string name="q6_option_a">Azteca</string>
+    <string name="q6_option_b">Maya</string>
+    <string name="q6_option_c">Inca</string>
+    <string name="q6_option_d">Moche</string>
+
+    <!-- P7 -->
+    <string name="q7_question">¿Qué filósofo griego fue maestro de Aristóteles?</string>
+    <string name="q7_option_a">Pitágoras</string>
+    <string name="q7_option_b">Platón</string>
+    <string name="q7_option_c">Sócrates</string>
+    <string name="q7_option_d">Heráclito</string>
+
+    <!-- P8 -->
+    <string name="q8_question">¿Cuál es la obra más famosa del pintor noruego Edvard Munch?</string>
+    <string name="q8_option_a">El Grito</string>
+    <string name="q8_option_b">La Virgen</string>
+    <string name="q8_option_c">El Beso</string>
+    <string name="q8_option_d">La Danza</string>
+
+    <!-- P9 -->
+    <string name="q9_question">¿Quién fue el primer europeo en llegar a la India bordeando África?</string>
+    <string name="q9_option_a">Hernando de Magallanes</string>
+    <string name="q9_option_b">Vasco da Gama</string>
+    <string name="q9_option_c">Bartolomé Díaz</string>
+    <string name="q9_option_d">Marco Polo</string>
+
+    <!-- P10 -->
+    <string name="q10_question">¿Cuál es el río más largo del continente europeo?</string>
+    <string name="q10_option_a">Rin</string>
+    <string name="q10_option_b">Volga</string>
+    <string name="q10_option_c">Danubio</string>
+    <string name="q10_option_d">Dniéper</string>
+
+    <!-- P11 -->
+    <string name="q11_question">¿Quién compuso la ópera "La Flauta Mágica"?</string>
+    <string name="q11_option_a">Beethoven</string>
+    <string name="q11_option_b">Haydn</string>
+    <string name="q11_option_c">Mozart</string>
+    <string name="q11_option_d">Wagner</string>
+
+    <!-- P12 -->
+    <string name="q12_question">¿En qué año cayó el Muro de Berlín?</string>
+    <string name="q12_option_a">1985</string>
+    <string name="q12_option_b">1987</string>
+    <string name="q12_option_c">1989</string>
+    <string name="q12_option_d">1991</string>
+
+    <!-- P13 -->
+    <string name="q13_question">¿Qué matemático formuló el llamado "último teorema" que tardó siglos en demostrarse?</string>
+    <string name="q13_option_a">Carl Friedrich Gauss</string>
+    <string name="q13_option_b">Pierre de Fermat</string>
+    <string name="q13_option_c">Leonhard Euler</string>
+    <string name="q13_option_d">Bernhard Riemann</string>
+
+    <!-- P14 -->
+    <string name="q14_question">¿Cuál es el libro más influyente de Charles Darwin?</string>
+    <string name="q14_option_a">El origen del hombre</string>
+    <string name="q14_option_b">El viaje del Beagle</string>
+    <string name="q14_option_c">El origen de las especies</string>
+    <string name="q14_option_d">Selección natural</string>
+
+    <!-- P15 -->
+    <string name="q15_question">¿Cuál es el país con mayor número de islas del mundo?</string>
+    <string name="q15_option_a">Indonesia</string>
+    <string name="q15_option_b">Filipinas</string>
+    <string name="q15_option_c">Suecia</string>
+    <string name="q15_option_d">Japón</string>
+
+    <!-- P16 -->
+    <string name="q16_question">¿En qué año comenzó la Primera Guerra Mundial?</string>
+    <string name="q16_option_a">1914</string>
+    <string name="q16_option_b">1918</string>
+    <string name="q16_option_c">1921</string>
+    <string name="q16_option_d">1905</string>
+
+    <!-- P17 -->
+    <string name="q17_question">¿Cuál es el río más largo del mundo según las mediciones modernas?</string>
+    <string name="q17_option_a">Nilo</string>
+    <string name="q17_option_b">Amazonas</string>
+    <string name="q17_option_c">Yangtsé</string>
+    <string name="q17_option_d">Misisipi</string>
+
+    <!-- P18 -->
+    <string name="q18_question">¿Quién escribió la obra "Crimen y Castigo"?</string>
+    <string name="q18_option_a">Tolstói</string>
+    <string name="q18_option_b">Dostoievski</string>
+    <string name="q18_option_c">Gógol</string>
+    <string name="q18_option_d">Pushkin</string>
+
+    <!-- P19 -->
+    <string name="q19_question">¿Cuál es el planeta más grande del Sistema Solar?</string>
+    <string name="q19_option_a">Júpiter</string>
+    <string name="q19_option_b">Saturno</string>
+    <string name="q19_option_c">Urano</string>
+    <string name="q19_option_d">Neptuno</string>
+
+    <!-- P20 (segunda Machu Picchu) -->
+    <string name="q20_question">¿Qué civilización construyó Machu Picchu?</string>
+    <string name="q20_option_a">Azteca</string>
+    <string name="q20_option_b">Inca</string>
+    <string name="q20_option_c">Maya</string>
+    <string name="q20_option_d">Olmeca</string>
+
+    <!-- P21 -->
+    <string name="q21_question">¿Qué científico propuso la teoría de la relatividad?</string>
+    <string name="q21_option_a">Max Planck</string>
+    <string name="q21_option_b">Isaac Newton</string>
+    <string name="q21_option_c">Albert Einstein</string>
+    <string name="q21_option_d">Niels Bohr</string>
+
+    <!-- P22 -->
+    <string name="q22_question">¿Cuál es la lengua más hablada en el mundo por número de hablantes nativos?</string>
+    <string name="q22_option_a">Inglés</string>
+    <string name="q22_option_b">Hindi</string>
+    <string name="q22_option_c">Mandarín</string>
+    <string name="q22_option_d">Español</string>
+
+    <!-- P23 -->
+    <string name="q23_question">¿Qué compositor creó la obra "El lago de los cisnes"?</string>
+    <string name="q23_option_a">Mozart</string>
+    <string name="q23_option_b">Tchaikovsky</string>
+    <string name="q23_option_c">Beethoven</string>
+    <string name="q23_option_d">Rachmaninov</string>
+
+    <!-- P24 -->
+    <string name="q24_question">¿Cuál fue la capital del Imperio Bizantino?</string>
+    <string name="q24_option_a">Roma</string>
+    <string name="q24_option_b">Atenas</string>
+    <string name="q24_option_c">Constantinopla</string>
+    <string name="q24_option_d">Ankara</string>
+
+    <!-- P25 -->
+    <string name="q25_question">¿Quién pintó "La noche estrellada"?</string>
+    <string name="q25_option_a">Van Gogh</string>
+    <string name="q25_option_b">Picasso</string>
+    <string name="q25_option_c">Dalí</string>
+    <string name="q25_option_d">Monet</string>
+
+    <!-- P26 -->
+    <string name="q26_question">¿Cuál es la capital de Canadá?</string>
+    <string name="q26_option_a">Toronto</string>
+    <string name="q26_option_b">Ottawa</string>
+    <string name="q26_option_c">Vancouver</string>
+    <string name="q26_option_d">Montreal</string>
+
+    <!-- P27 -->
+    <string name="q27_question">¿Quién escribió "Cien años de soledad"?</string>
+    <string name="q27_option_a">Pablo Neruda</string>
+    <string name="q27_option_b">Julio Cortázar</string>
+    <string name="q27_option_c">Gabriel García Márquez</string>
+    <string name="q27_option_d">Borges</string>
+
+    <!-- P28 -->
+    <string name="q28_question">¿Cuál de estos números es un número primo?</string>
+    <string name="q28_option_a">21</string>
+    <string name="q28_option_b">51</string>
+    <string name="q28_option_c">97</string>
+    <string name="q28_option_d">85</string>
+
+    <!-- P29 -->
+    <string name="q29_question">¿Qué país inventó el papel?</string>
+    <string name="q29_option_a">India</string>
+    <string name="q29_option_b">Egipto</string>
+    <string name="q29_option_c">China</string>
+    <string name="q29_option_d">Irán</string>
+
+    <!-- P30 -->
+    <string name="q30_question">¿Cuál es el océano más profundo?</string>
+    <string name="q30_option_a">Índico</string>
+    <string name="q30_option_b">Atlántico</string>
+    <string name="q30_option_c">Pacífico</string>
+    <string name="q30_option_d">Ártico</string>
+
+    <!-- P31 -->
+    <string name="q31_question">¿Quién desarrolló la teoría de la evolución por selección natural?</string>
+    <string name="q31_option_a">Jean-Baptiste Lamarck</string>
+    <string name="q31_option_b">Charles Darwin</string>
+    <string name="q31_option_c">Gregor Mendel</string>
+    <string name="q31_option_d">Carl Linnaeus</string>
+
+    <!-- P32 -->
+    <string name="q32_question">¿Cuál es el país con mayor número de volcanes activos del planeta?</string>
+    <string name="q32_option_a">Indonesia</string>
+    <string name="q32_option_b">Japón</string>
+    <string name="q32_option_c">Estados Unidos</string>
+    <string name="q32_option_d">Papúa Nueva Guinea</string>
+
+    <!-- P33 -->
+    <string name="q33_question">¿Cuál es el objeto más grande del Cinturón de Kuiper?</string>
+    <string name="q33_option_a">Plutón</string>
+    <string name="q33_option_b">Eris</string>
+    <string name="q33_option_c">Makemake</string>
+    <string name="q33_option_d">Haumea</string>
+
+    <!-- P34 -->
+    <string name="q34_question">¿Qué rey europeo fue apodado "El Emperador del Sacro Imperio que nunca ganó una batalla"?</string>
+    <string name="q34_option_a">Rodolfo II</string>
+    <string name="q34_option_b">Fernando II</string>
+    <string name="q34_option_c">Maximiliano I</string>
+    <string name="q34_option_d">Carlos VII</string>
+
+    <!-- P35 -->
+    <string name="q35_question">¿Cuál es el lago más profundo del mundo después del Baikal?</string>
+    <string name="q35_option_a">Tanganica</string>
+    <string name="q35_option_b">Vostok</string>
+    <string name="q35_option_c">Caspio</string>
+    <!-- APÓSTROFE ESCAPADO COMO ENTIDAD -->
+    <string name="q35_option_d">OHiggins San Martin</string>
+
+    <!-- P36 -->
+    <string name="q36_question">¿Qué tipo de estrella es Betelgeuse?</string>
+    <string name="q36_option_a">Enana blanca</string>
+    <string name="q36_option_b">Supergigante roja</string>
+    <string name="q36_option_c">Gigante azul</string>
+    <string name="q36_option_d">Estrella de neutrones</string>
+
+    <!-- P37 -->
+    <string name="q37_question">¿En qué año cayó la ciudad de Constantinopla en manos del Imperio Otomano?</string>
+    <string name="q37_option_a">1435</string>
+    <string name="q37_option_b">1453</string>
+    <string name="q37_option_c">1470</string>
+    <string name="q37_option_d">1492</string>
+
+    <!-- P38 -->
+    <string name="q38_question">¿Cuál fue la primera película en ganar el Óscar a Mejor Película de Habla No Inglesa?</string>
+    <string name="q38_option_a">La Strada</string>
+    <string name="q38_option_b">Rashōmon</string>
+    <string name="q38_option_c">Fresas salvajes</string>
+    <string name="q38_option_d">El ladrón de bicicletas</string>
+
+    <!-- P39 -->
+    <string name="q39_question">¿Qué país posee la mayor longitud de costa del mundo?</string>
+    <string name="q39_option_a">Rusia</string>
+    <string name="q39_option_b">Australia</string>
+    <string name="q39_option_c">Canadá</string>
+    <string name="q39_option_d">Indonesia</string>
+
+    <!-- P40 -->
+    <string name="q40_question">¿Qué imperio destruyó definitivamente Cartago en la Tercera Guerra Púnica?</string>
+    <string name="q40_option_a">Imperio Romano</string>
+    <string name="q40_option_b">Reino de Macedonia</string>
+    <string name="q40_option_c">Imperio Persa</string>
+    <string name="q40_option_d">Reino de Numidia</string>
+
+    <!-- P41 -->
+    <string name="q41_question">¿Quién fue el director de la película expresionista alemana "Metrópolis" (1927)?</string>
+    <string name="q41_option_a">Fritz Lang</string>
+    <string name="q41_option_b">F. W. Murnau</string>
+    <string name="q41_option_c">G. W. Pabst</string>
+    <string name="q41_option_d">Robert Wiene</string>
 
 </resources>

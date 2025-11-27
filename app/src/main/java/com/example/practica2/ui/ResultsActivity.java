@@ -4,78 +4,62 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practica2.R;
-import com.example.practica2.data.AppDatabase;
 import com.example.practica2.data.GameResult;
-import com.google.android.material.appbar.MaterialToolbar;
 
-import java.util.List;
-
-public class ResultsActivity extends AppCompatActivity {
-
-    private AppDatabase db;
+public class ResultsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results);
 
-        MaterialToolbar toolbar = findViewById(R.id.topAppBar);
-        setSupportActionBar(toolbar);
+        ResultsViewModel viewModel = new ViewModelProvider(this).get(ResultsViewModel.class);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setIcon(R.mipmap.ic_launcher_round);
-            getSupportActionBar().setTitle(R.string.app_name);
-        }
-
-        toolbar.setNavigationOnClickListener(v -> finish());
-
-        db = AppDatabase.getInstance(this);
-
-        int score = getIntent().getIntExtra("score", 0);
-        int totalQuestions = getIntent().getIntExtra("totalQuestions", 0);
-        int correct = getIntent().getIntExtra("correctAnswers", 0);
-        int wrong = getIntent().getIntExtra("wrongAnswers", 0);
+        // -------- Resumen de la partida actual --------
+        int finalScore = getIntent().getIntExtra("FINAL_SCORE", 0);
+        int totalQuestions = getIntent().getIntExtra("TOTAL_QUESTIONS", 0);
+        int correct = getIntent().getIntExtra("CORRECT_ANSWERS", 0);
+        int wrong = getIntent().getIntExtra("WRONG_ANSWERS", 0);
 
         GameResult result = new GameResult(
                 System.currentTimeMillis(),
-                score,
+                finalScore,
                 totalQuestions,
                 correct,
                 wrong
         );
-
-        // MUY IMPORTANTE: Room SIEMPRE en hilo de fondo
-        new Thread(() -> {
-            db.gameResultDao().insert(result);
-
-            // Prueba rápida: leer cuántas partidas hay y enseñarlo en un Toast
-            List<GameResult> all = db.gameResultDao().getAllOrdered();
-            runOnUiThread(() -> Toast.makeText(
-                    ResultsActivity.this,
-                    "Partidas guardadas: " + all.size(),
-                    Toast.LENGTH_SHORT
-            ).show());
-        }).start();
+        viewModel.insert(result);
 
         TextView tvFinalScore = findViewById(R.id.tvFinalScore);
+        TextView tvTotalQuestions = findViewById(R.id.tvTotalQuestionsValue);
+        TextView tvCorrectAnswers = findViewById(R.id.tvCorrectAnswersValue);
+        TextView tvWrongAnswers = findViewById(R.id.tvWrongAnswersValue);
         Button btnBackToMain = findViewById(R.id.btnBackToMain);
 
-        // Recuperar la puntuación desde el Intent
-        int finalScore = getIntent().getIntExtra("FINAL_SCORE", 0);
-        tvFinalScore.setText("Puntuación final: " + finalScore);
+        tvFinalScore.setText(getString(R.string.final_score_label, finalScore));
+        tvTotalQuestions.setText(String.valueOf(totalQuestions));
+        tvCorrectAnswers.setText(String.valueOf(correct));
+        tvWrongAnswers.setText(String.valueOf(wrong));
 
-        // Botón para volver a la pantalla principal
         btnBackToMain.setOnClickListener(v -> {
-            Intent intent = new Intent(ResultsActivity.this, MainActivity.class);
+            Intent intent = new Intent(this, MainActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            finish(); // cierra ResultsActivity
+            finish();
         });
+
+        // -------- Tabla de resultados históricos --------
+        RecyclerView rvResults = findViewById(R.id.rvResults);
+        GameResultAdapter adapter = new GameResultAdapter();
+        rvResults.setLayoutManager(new LinearLayoutManager(this));
+        rvResults.setAdapter(adapter);
+
+        viewModel.getResults().observe(this, adapter::submitList);
     }
 }

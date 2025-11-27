@@ -1,52 +1,190 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:padding="24dp">
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <!-- TOOLBAR -->
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/topAppBar"
+    <!-- Toolbar -->
+    <include layout="@layout/toolbar" />
+
+    <!-- Contenedor de resumen de la partida actual -->
+    <LinearLayout
+        android:id="@+id/summaryContainer"
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:title="@string/app_name" />
-
-
-    <com.google.android.material.card.MaterialCardView
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        app:cardCornerRadius="20dp"
-        app:cardElevation="6dp">
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="12dp"
+        android:background="?attr/colorSurfaceContainerHigh"
+        app:layout_constraintTop_toBottomOf="@id/topAppBar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:id="@+id/tvResultsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/results_title"
+            android:textAppearance="?attr/textAppearanceTitleMedium"
+            android:layout_marginBottom="4dp" />
+
+        <TextView
+            android:id="@+id/tvFinalScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceHeadlineMedium"
+            android:layout_marginBottom="8dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:padding="24dp">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/tvFinalScore"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="?attr/textAppearanceHeadlineSmall"
-                android:layout_marginBottom="24dp"/>
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnBackToMain"
-                style="@style/Widget.MyApp.Button.Filled"
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:text="@string/volver_al_inicio"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/label_total_questions" />
+
+                <TextView
+                    android:id="@+id/tvTotalQuestionsValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="4dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/label_correct_answers" />
+
+                <TextView
+                    android:id="@+id/tvCorrectAnswersValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/green_correct" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/label_wrong_answers" />
+
+                <TextView
+                    android:id="@+id/tvWrongAnswersValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/red_incorrect" />
+            </LinearLayout>
         </LinearLayout>
-    </com.google.android.material.card.MaterialCardView>
 
-</LinearLayout>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnBackToMain"
+            style="@style/Widget.MyApp.Button.Filled"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="12dp"
+            android:text="@string/volver_al_inicio" />
+    </LinearLayout>
+
+    <!-- Cabecera fija de la tabla -->
+    <LinearLayout
+        android:id="@+id/headerRow"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:background="?attr/colorSurfaceVariant"
+        android:padding="12dp"
+        android:gravity="center_vertical"
+        app:layout_constraintTop_toBottomOf="@id/summaryContainer"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/correctas"
+            android:textStyle="bold"
+            android:textColor="@color/green_correct"
+            android:gravity="center"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/incorrectas"
+            android:textStyle="bold"
+            android:textColor="@color/red_incorrect"
+            android:gravity="center"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/totales"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/puntuaci_n"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textAlignment="center"
+            />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.3"
+            android:text="@string/fecha"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:textAlignment="center"
+            />
+    </LinearLayout>
+
+    <!-- Lista scrollable de resultados -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvResults"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingHorizontal="12dp"
+        android:paddingTop="4dp"
+        android:paddingBottom="12dp"
+        app:layout_constraintTop_toBottomOf="@id/headerRow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

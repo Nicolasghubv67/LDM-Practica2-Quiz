@@ -3,9 +3,13 @@ package com.example.practica2.ui;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.example.practica2.R;
 import com.google.android.material.appbar.MaterialToolbar;
@@ -30,6 +34,16 @@ public abstract class BaseActivity extends AppCompatActivity {
             // Título en el XML
             getSupportActionBar().setDisplayShowTitleEnabled(false);
         }
+
+        // Aplicar padding para respetar barra de estado / navegación
+        View root = findViewById(R.id.main);
+        if (root != null) {
+            ViewCompat.setOnApplyWindowInsetsListener(root, (v, windowInsets) -> {
+                Insets insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+                v.setPadding(insets.left, insets.top, insets.right, insets.bottom);
+                return windowInsets;
+            });
+        }
     }
 
     @Override
@@ -45,7 +59,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         // Botón de navegación "atrás"
         if (id == android.R.id.home) {
-            onBackPressed();
+            getOnBackPressedDispatcher().onBackPressed();
             return true;
         }
 

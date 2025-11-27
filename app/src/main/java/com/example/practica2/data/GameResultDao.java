@@ -13,8 +13,5 @@ public interface GameResultDao {
     void insert(GameResult result);
 
     @Query("SELECT * FROM game_results ORDER BY timestamp DESC")
-    List<GameResult> getAllOrdered();
-
-    @Query("SELECT COUNT(*) FROM game_results")
-    int count();
+    androidx.lifecycle.LiveData<List<GameResult>> getAllOrderedLive();
 }

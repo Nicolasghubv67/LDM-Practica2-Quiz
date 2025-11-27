@@ -47,9 +47,7 @@ public class QuestionFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(
-            @NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState
-    ) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_question, container, false);
     }
 
@@ -71,7 +69,7 @@ public class QuestionFragment extends Fragment {
         rb4 = v.findViewById(R.id.rb4);
         btnCheck = v.findViewById(R.id.btnCheck);
 
-        // OBSERVADORES
+        // Observa la pregunta actual
         viewModel.getCurrentQuestionLive().observe(
                 getViewLifecycleOwner(),
                 q -> {
@@ -80,6 +78,7 @@ public class QuestionFragment extends Fragment {
                 }
         );
 
+        // Número de pregunta
         viewModel.getCurrentIndexLive().observe(
                 getViewLifecycleOwner(),
                 idx -> tvHeader.setText(
@@ -87,6 +86,7 @@ public class QuestionFragment extends Fragment {
                 )
         );
 
+        // Habilitación/inhabilitación por validación
         viewModel.getValidated().observe(
                 getViewLifecycleOwner(),
                 validated -> {
@@ -203,7 +203,7 @@ public class QuestionFragment extends Fragment {
 
         int checkedId = rgOptions.getCheckedRadioButtonId();
         if (checkedId == -1) {
-            ((GameActivity) requireActivity()).showFeedback("Selecciona una opción", false);
+            ((GameActivity) requireActivity()).showFeedback(getString(R.string.select_option), false);
             return;
         }
 

@@ -30,7 +30,8 @@
             android:focusable="true"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/boton_comenzar"/>
+            app:lottie_rawRes="@raw/boton_comenzar"
+            tools:ignore="SpeakableTextPresentCheck" />
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
