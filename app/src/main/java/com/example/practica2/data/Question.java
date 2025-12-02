@@ -5,12 +5,7 @@ import androidx.room.PrimaryKey;
 
 /**
  * Entidad Room para preguntas.
- * type:
- *  0 = TEXT_WITH_TEXT_OPTIONS
- *  1 = IMAGE_WITH_TEXT_OPTIONS
- *  2 = TEXT_WITH_IMAGE_OPTIONS
- *-
- * Solo algunos campos se usan según el tipo.
+ * Almacena IDs de recursos (R.string.x, R.drawable.y)
  */
 @Entity
 public class Question {
@@ -18,25 +13,25 @@ public class Question {
     @PrimaryKey(autoGenerate = true)
     public int id;
 
-    // Tipo de pregunta
+    // 0=Text/Text, 1=Image/Text, 2=Text/Image
     public int type;
 
-    // Enunciado
-    public String questionText;
+    // Guardamos el ID del recurso (ej: R.string.q1_question), no el texto.
+    // Usamos Integer para permitir nulos.
+    public Integer questionTextRes;
     public Integer questionImageRes;
 
-    // Opciones de texto
-    public String optionA;
-    public String optionB;
-    public String optionC;
-    public String optionD;
+    // Opciones de texto (IDs de R.string)
+    public Integer optionATextRes;
+    public Integer optionBTextRes;
+    public Integer optionCTextRes;
+    public Integer optionDTextRes;
 
-    // Opciones de imagen
+    // Opciones de imagen (IDs de R.drawable)
     public Integer optionAImageRes;
     public Integer optionBImageRes;
     public Integer optionCImageRes;
     public Integer optionDImageRes;
 
-    // Índice de la respuesta correcta: 0=A,1=B,2=C,3=D
     public int correctIndex;
 }

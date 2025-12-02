@@ -14,6 +14,7 @@ public class SoundPlayer {
     private final SoundPool soundPool;
     private final int soundCorrectId;
     private final int soundWrongId;
+    private final int soundClickId;
 
     private static final long COOLDOWN_MS = 150;
     private long lastCorrectTime = 0L;
@@ -34,6 +35,7 @@ public class SoundPlayer {
 
         soundCorrectId = soundPool.load(appContext, R.raw.correct, 1);
         soundWrongId   = soundPool.load(appContext, R.raw.wrong, 1);
+        soundClickId   = soundPool.load(appContext, R.raw.click, 1);
     }
 
     private boolean isSoundEnabled() {
@@ -62,6 +64,6 @@ public class SoundPlayer {
 
     public void playClick() {
         if (isSoundEnabled()) return;
-        soundPool.play(soundCorrectId, 1f, 1f, 1, 0, 1f);
+        soundPool.play(soundClickId, 1f, 1f, 1, 0, 1f);
     }
 }

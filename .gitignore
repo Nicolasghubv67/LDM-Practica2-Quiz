@@ -35,3 +35,10 @@ google-services.json
 *.html
 *.bin
 *.lock
+.gradle/8.13/executionHistory/executionHistory.lock
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+.gradle/8.13/fileHashes/fileHashes.bin
+.gradle/8.13/fileHashes/fileHashes.lock
+.gradle/buildOutputCleanup/buildOutputCleanup.lock
+/.gradle

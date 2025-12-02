@@ -18,7 +18,7 @@ public class QuizApplication extends Application implements Application.Activity
     @Override
     public void onCreate() {
         super.onCreate();
-
+        com.example.practica2.data.AppDatabase.getInstance(this).getOpenHelper().getWritableDatabase();
         registerActivityLifecycleCallbacks(this);
 
         musicPlayer = new MusicPlayer(this, R.raw.bg_music);

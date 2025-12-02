@@ -36,7 +36,7 @@ public class MainActivity extends BaseActivity {
         btnStart.enableMergePathsForKitKatAndAbove(true);
 
         btnStart.setOnClickListener(v -> {
-            soundPlayer.playClick();
+            soundPlayer.playCorrect();
             showQuestionCountDialog();
         });
     }
@@ -62,6 +62,7 @@ public class MainActivity extends BaseActivity {
                 .setView(dialogView)
                 .setPositiveButton(R.string.empezar, (dialog, which) -> {
                     int count = (int) slider.getValue();
+                    soundPlayer.playClick();
                     startGame(count);
                 })
                 .setNegativeButton(R.string.cancelar, null)
