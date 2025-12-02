@@ -1,4 +1,4 @@
-package com.example.practica2.ui;
+package com.example.practica2.ui.view;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.practica2.R;
 import com.example.practica2.repository.GameRepository;
+import com.example.practica2.ui.viewmodel.GameViewModel;
 
 public class GameActivity extends BaseActivity {
 

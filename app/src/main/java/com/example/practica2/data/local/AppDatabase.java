@@ -1,4 +1,4 @@
-package com.example.practica2.data;
+package com.example.practica2.data.local;
 
 import android.content.Context;
 import androidx.annotation.NonNull;
@@ -7,6 +7,9 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 import com.example.practica2.R;
+import com.example.practica2.data.model.GameResult;
+import com.example.practica2.data.model.Question;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Executors;

@@ -1,4 +1,4 @@
-package com.example.practica2.ui;
+package com.example.practica2.ui.view;
 
 import android.content.Intent;
 import android.view.Menu;

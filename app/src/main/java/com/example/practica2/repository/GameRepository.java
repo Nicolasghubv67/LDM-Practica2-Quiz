@@ -1,9 +1,9 @@
 package com.example.practica2.repository;
 
 import android.content.Context;
-import com.example.practica2.data.AppDatabase;
-import com.example.practica2.data.Question;
-import com.example.practica2.data.QuestionDao;
+import com.example.practica2.data.local.AppDatabase;
+import com.example.practica2.data.model.Question;
+import com.example.practica2.data.local.QuestionDao;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

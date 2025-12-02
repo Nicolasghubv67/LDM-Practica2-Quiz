@@ -1,4 +1,4 @@
-package com.example.practica2.ui;
+package com.example.practica2.ui.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,7 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.practica2.QuizApplication;
 import com.example.practica2.R;
 import com.example.practica2.media.SoundPlayer;
+import com.example.practica2.ui.viewmodel.GameViewModel;
 
 public class MainActivity extends BaseActivity {
 

@@ -1,4 +1,4 @@
-package com.example.practica2.ui;
+package com.example.practica2.ui.view;
 
 import android.content.Context;
 import android.os.Bundle;

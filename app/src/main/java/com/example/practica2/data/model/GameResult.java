@@ -1,4 +1,4 @@
-package com.example.practica2.data;
+package com.example.practica2.data.model;
 
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;

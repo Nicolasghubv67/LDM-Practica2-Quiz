@@ -1,8 +1,10 @@
-package com.example.practica2.data;
+package com.example.practica2.data.local;
 
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+
+import com.example.practica2.data.model.GameResult;
 
 import java.util.List;
 

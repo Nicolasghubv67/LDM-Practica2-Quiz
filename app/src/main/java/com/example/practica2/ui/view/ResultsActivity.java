@@ -1,4 +1,4 @@
-package com.example.practica2.ui;
+package com.example.practica2.ui.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practica2.R;
-import com.example.practica2.data.GameResult;
+import com.example.practica2.data.model.GameResult;
+import com.example.practica2.ui.adapter.GameResultAdapter;
+import com.example.practica2.ui.viewmodel.ResultsViewModel;
 
 public class ResultsActivity extends BaseActivity {
 

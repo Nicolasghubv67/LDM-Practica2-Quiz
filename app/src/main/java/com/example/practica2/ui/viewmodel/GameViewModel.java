@@ -1,10 +1,10 @@
-package com.example.practica2.ui;
+package com.example.practica2.ui.viewmodel;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import com.example.practica2.data.Question; // Importamos la entidad
+import com.example.practica2.data.model.Question;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +20,6 @@ public class GameViewModel extends ViewModel {
     private final MutableLiveData<Integer> wrongAnswers = new MutableLiveData<>(0);
     private final MutableLiveData<Boolean> validated = new MutableLiveData<>(false);
     private final MutableLiveData<Integer> currentIndexLive = new MutableLiveData<>(0);
-
-    // Usamos la entidad Question directamente
     private final MutableLiveData<Question> currentQuestionLive = new MutableLiveData<>();
 
     private final List<Question> questions = new ArrayList<>();

@@ -1,4 +1,4 @@
-package com.example.practica2.ui;
+package com.example.practica2.ui.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.practica2.R;
-import com.example.practica2.data.GameResult;
+import com.example.practica2.data.model.GameResult;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

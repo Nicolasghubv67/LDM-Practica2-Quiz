@@ -1,4 +1,4 @@
-package com.example.practica2.ui;
+package com.example.practica2.ui.view;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -17,8 +17,9 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import com.example.practica2.QuizApplication;
 import com.example.practica2.R;
-import com.example.practica2.data.Question;
+import com.example.practica2.data.model.Question;
 import com.example.practica2.media.SoundPlayer;
+import com.example.practica2.ui.viewmodel.GameViewModel;
 import com.google.android.material.card.MaterialCardView;
 import com.google.android.material.radiobutton.MaterialRadioButton;
 

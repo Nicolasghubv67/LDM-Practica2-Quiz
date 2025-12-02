@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_game_activity"
-    tools:context=".ui.GameActivity">
+    tools:context=".ui.view.GameActivity">
 
     <!-- TOOLBAR -->
     <include layout="@layout/toolbar" />
@@ -73,7 +73,7 @@
     <!-- Zona central: contenedor de preguntas -->
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/questionHost"
-        android:name="com.example.practica2.ui.QuestionFragment"
+        android:name="com.example.practica2.ui.view.QuestionFragment"
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintWidth_default="spread"

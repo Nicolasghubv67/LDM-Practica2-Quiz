@@ -1,4 +1,4 @@
-package com.example.practica2.ui;
+package com.example.practica2.ui.viewmodel;
 
 import android.app.Application;
 
@@ -6,9 +6,9 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
-import com.example.practica2.data.AppDatabase;
-import com.example.practica2.data.GameResult;
-import com.example.practica2.data.GameResultDao;
+import com.example.practica2.data.local.AppDatabase;
+import com.example.practica2.data.model.GameResult;
+import com.example.practica2.data.local.GameResultDao;
 
 import java.util.List;
 import java.util.concurrent.ExecutorService;
